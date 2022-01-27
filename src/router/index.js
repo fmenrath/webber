@@ -3,6 +3,7 @@ import Home from '../views/Home.vue'
 import Movie from '../views/Movie.vue'
 import Show from '../views/Show.vue'
 import Favourites from '../views/Favourites.vue'
+import About from '../views/About.vue'
 
 
 
@@ -26,6 +27,11 @@ const routes = [
     path: '/favourites/',
     name: 'Favourites',
     component: Favourites
+  },
+  {
+    path: '/about/',
+    name: 'About',
+    component: About
   }
 ]
 

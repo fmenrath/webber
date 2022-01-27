@@ -2,10 +2,18 @@
   <SplashScreen />
   <Header/>
   <main>
-    <router-view></router-view>
+    <router-view 
+      @addToFavouriteMovies="addToFavouriteMovies"
+      @addToFavouriteShows="addToFavouriteShows"
+      @removeFromFavouriteMovies="removeFromFavouriteMovies"
+      @removeFromFavouriteShows="removeFromFavouriteShows"
+      :favouriteMovies="favouriteMovies"
+      :favouriteShows="favouriteShows"
+      ></router-view>
   </main>
   <Footer/>
 </template>
+
 
 <script>
 import './main.scss'
@@ -22,7 +30,36 @@ export default{
   },
   data(){
     return{
+      favouriteMovies: [],
+      favouriteShows: []
     }
+  },
+  methods: {
+    //Adding a movie or show to favourites
+    addToFavouriteMovies(number){
+      var item = {
+        id: number
+      }
+      this.favouriteMovies.push(item)
+    },
+    addToFavouriteShows(number){
+      var item = {
+        id: number
+      }
+      this.favouriteShows.push(item)
+    },
+
+    //Removing a movie or show from favourites
+    removeFromFavouriteMovies(number){
+      this.favouriteMovies = this.favouriteMovies.filter(function( obj ) {
+        return obj.id !== number;
+      })
+    },
+    removeFromFavouriteShows(number){
+      this.favouriteMovies = this.favouriteMovies.filter(function( obj ) {
+        return obj.id !== number;
+      })
+    },
   }
 }
 </script>

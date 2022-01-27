@@ -54,14 +54,8 @@
       <!-- Add/Remove from Lists -->
       <div class="actions">
         <div href="" class="toggle-favourites">
-          <img v-if="inArrayCheck(entry.id, favouriteMovies)" src="../assets/heart-solid.svg" class="heart" alt="" @click="removeFromFavourites(entry.id)">
-          <img v-else src="../assets/heart.svg" class="heart" alt="" @click="addToFavourites(entry.id, entry.title)">
-          <!-- <div v-if="inArrayCheck(entry.id, favouriteMovies)" class="modal-info" id="modal-remove">
-            Removed from your favourites.
-          </div>
-          <div v-else class="modal-info" id="modal-add">
-            Added to your favourites.
-          </div> -->
+          <img v-if="inFavouriteMoviesCheck(entry.id)" src="../assets/heart-solid.svg" class="heart" alt="" @click="removeFromFavouriteMovies(entry.id)">
+          <img v-else src="../assets/heart.svg" class="heart" alt="" @click="addToFavouriteMovies(entry.id)">
         </div>
 
         <!-- Social Media Links -->
@@ -124,10 +118,11 @@ export default {
       writers: [],
       socials: [],
       entry_id: this.$route.params.id,
-      api_key: "13b853544d79c335a990b1e0c5825913",
-      favouriteMovies: this.favouriteMovies 
+      api_key: "13b853544d79c335a990b1e0c5825913"
     }
   },
+  props: ['favouriteMovies'],
+  emits: ['addToFavouriteMovies', 'removeFromFavouriteMovies'],
   async created() {
     //Get Movie Details from API
     try{
@@ -173,22 +168,14 @@ export default {
       var minutes = time % 60
       return hours+'h ' + minutes + 'min'
     },
-    addToFavourites(number, name){
-      var item = {
-        id: number,
-        name: name
-      }
-      this.favouriteMovies.push(item)
-      console.log(this.favouriteMovies)
+    inFavouriteMoviesCheck(number){  
+      return this.favouriteMovies.some(entry => entry.id == number)
     },
-    removeFromFavourites(number){
-      this.favouriteMovies = this.favouriteMovies.filter(function( obj ) {
-        return obj.id !== number;
-      })
-      console.log(this.favouriteMovies)
+    addToFavouriteMovies(number){
+      this.$emit('addToFavouriteMovies', number)
     },
-    inArrayCheck(number, array){  
-      return array.some(entry => entry.id == number)
+    removeFromFavouriteMovies(number){
+      this.$emit('removeFromFavouriteMovies', number)
     }
   }
 }

@@ -1,7 +1,14 @@
 <template>
+   <h1>Favourite Movies</h1>
    <ul>
-      <li v-for="item in favouriteMovies" :key="item.id">
-         <span>{{item.name}}</span>
+      <li v-for="movie in favouriteMovies" :key="movie.id">
+         <span>{{movie.id}}</span>
+      </li>
+   </ul>
+   <h1>Favourite Shows</h1>
+   <ul>
+      <li v-for="show in favouriteShows" :key="show.id">
+         <span>{{show.id}}</span>
       </li>
    </ul>
 </template>
@@ -11,15 +18,11 @@
 // import axios from "axios";
 
 export default {
-  name: 'Home',
-  data(){
-    return{
-      favouriteMovies: this.favouriteMovies,
-      favouriteShows: this.favouriteShows
-    }
-  },
-  created(){
-     this.fix = this.favouriteMovies
-  }
+   name: 'Home',
+   data(){
+      return{
+      }
+   },
+   props: ['favouriteMovies', 'favouriteShows']
 }
 </script>

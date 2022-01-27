@@ -41,7 +41,8 @@
       <!-- Add/Remove from Lists -->
       <div class="actions">
         <div href="" class="toggle-favourites">
-          <img src="../assets/heart.svg" class="heart" alt="">
+          <img v-if="inFavouriteShowsCheck(entry.id)" src="../assets/heart-solid.svg" class="heart" alt="" @click="removeFromFavouriteShows(entry.id)">
+          <img v-else src="../assets/heart.svg" class="heart" alt="" @click="addToFavouriteShows(entry.id)">
         </div>
         
         <!-- Social Media Links -->
@@ -106,9 +107,10 @@ export default {
       seasonCount: 0,
       entry_id: this.$route.params.id,
       api_key: "13b853544d79c335a990b1e0c5825913",
-      favouriteShows: this.favouriteShows
     }
   },
+  props: ['favouriteShows'],
+  emits: ['addToFavouriteShows', 'removeFromFavouriteShows'],
   async created() {
     //Get Show Details from API
     try{
@@ -149,6 +151,17 @@ export default {
       this.socials = socials.data
     }catch(e){
       console.log(e)
+    }
+  },
+  methods: {
+    inFavouriteShowsCheck(number){  
+      return this.favouriteShows.some(entry => entry.id == number)
+    },
+    addToFavouriteShows(number){
+      this.$emit('addToFavouriteShows', number)
+    },
+    removeFromFavouriteShows(number){
+      this.$emit('removeFromFavouriteShows', number)
     }
   }
 }

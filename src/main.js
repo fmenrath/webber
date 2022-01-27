@@ -3,8 +3,6 @@ import App from './App.vue'
 import router from './router'
 
 let app = createApp(App)
-app.config.globalProperties.favouriteShows = []
-app.config.globalProperties.favouriteMovies = []
 app.use(router).mount('#app')
 
 const splash_screen = document.getElementById("splash-screen");

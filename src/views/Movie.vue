@@ -121,25 +121,17 @@ export default {
       api_key: "13b853544d79c335a990b1e0c5825913"
     }
   },
-  props: ['favouriteMovies'],
-  emits: ['addToFavouriteMovies', 'removeFromFavouriteMovies'],
+  props: ['favouriteShows', 'favouriteMovies'],
+  emits: ['addToFavouriteShows', 'removeFromFavouriteShows', 'addToFavouriteMovies', 'removeFromFavouriteMovies'],
   async created() {
     //Get Movie Details from API
-    try{
-      const res = await axios.get('https://api.themoviedb.org/3/movie/'+this.entry_id+'?api_key='+this.api_key+'&language=en-US')
-      this.entry = res.data
-    }catch(e){
-      console.log(e)
-    }
+    const res = await axios.get('https://api.themoviedb.org/3/movie/'+this.entry_id+'?api_key='+this.api_key+'&language=en-US')
+    this.entry = res.data
 
     //Get Movie Crew and Cast from API
-    try{
-      const cast = await axios.get('https://api.themoviedb.org/3/movie/'+this.entry_id+'/credits?api_key='+this.api_key+'&language=en-US')
-      this.entry_crew = cast.data.crew
-      this.entry_cast = cast.data.cast
-    }catch(e){
-      console.log(e)
-    }
+    const cast = await axios.get('https://api.themoviedb.org/3/movie/'+this.entry_id+'/credits?api_key='+this.api_key+'&language=en-US')
+    this.entry_crew = cast.data.crew
+    this.entry_cast = cast.data.cast
 
     //Add data to crew lists
     this.entry_crew.forEach(crewmember => {
@@ -155,19 +147,17 @@ export default {
     });
 
     //Get socials
-    try{
-      const socials = await axios.get('https://api.themoviedb.org/3/movie/'+this.entry_id+'/external_ids?api_key='+this.api_key)
-      this.socials = socials.data
-    }catch(e){
-      console.log(e)
-    }
+    const socials = await axios.get('https://api.themoviedb.org/3/movie/'+this.entry_id+'/external_ids?api_key='+this.api_key)
+    this.socials = socials.data
   },
+
   methods: {
     convertRuntime(time){
       var hours = Math.floor(time/60)
       var minutes = time % 60
       return hours+'h ' + minutes + 'min'
     },
+    //Methods for List Management
     inFavouriteMoviesCheck(number){  
       return this.favouriteMovies.some(entry => entry.id == number)
     },

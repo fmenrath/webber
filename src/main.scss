@@ -233,13 +233,6 @@ body{
 
    .home{
 
-      .carousel{
-         height: 400px;
-         background-color: lightgray;
-         width: 100%;
-         display: none;
-      }
-
       .movies{
          max-width: var(--width);
          margin: 0 auto;
@@ -660,10 +653,14 @@ body{
                cursor: pointer;
                filter: invert(52%) sepia(72%) saturate(440%) hue-rotate(95deg) brightness(99%) contrast(92%) drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.1));
                position: relative;
-               transition: transform 0.35s ease-in-out;
+               transition: transform 0.15s ease-in-out;
 
                &:active{
-                  transform: scale(1.35);
+                  transform: scale(1.25);
+               }
+
+               &:hover{
+                  transform: scale(1.15);
                }
             }
 
@@ -820,7 +817,7 @@ body.dark{
 .dark{
 
    #splash-screen{
-      background-color: black !important;
+      background-color: rgb(15, 15, 15) !important;
    }
 
    header{

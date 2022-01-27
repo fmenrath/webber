@@ -56,7 +56,7 @@ export default{
       })
     },
     removeFromFavouriteShows(number){
-      this.favouriteMovies = this.favouriteMovies.filter(function( obj ) {
+      this.favouriteShows = this.favouriteShows.filter(function( obj ) {
         return obj.id !== number;
       })
     },

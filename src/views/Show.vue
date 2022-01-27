@@ -109,28 +109,18 @@ export default {
       api_key: "13b853544d79c335a990b1e0c5825913",
     }
   },
-  props: ['favouriteShows'],
-  emits: ['addToFavouriteShows', 'removeFromFavouriteShows'],
+  props: ['favouriteShows', 'favouriteMovies'],
+  emits: ['addToFavouriteShows', 'removeFromFavouriteShows', 'addToFavouriteMovies', 'removeFromFavouriteMovies'],
   async created() {
     //Get Show Details from API
-    try{
-      const res = await axios.get('https://api.themoviedb.org/3/tv/'+this.entry_id+'?api_key='+this.api_key+'&language=en-US')
-      this.entry = res.data
-      console.log(this.entry)
-      this.seasonCount = this.entry.seasons.length
-    }catch(e){
-      console.log(e)
-    }
-
+    const res = await axios.get('https://api.themoviedb.org/3/tv/'+this.entry_id+'?api_key='+this.api_key+'&language=en-US')
+    this.entry = res.data
+    this.seasonCount = this.entry.seasons.length
 
     //Get Show Crew and Cast from API
-    try{
-      const cast = await axios.get('https://api.themoviedb.org/3/tv/'+this.entry_id+'/credits?api_key='+this.api_key+'&language=en-US')
-      this.entry_crew = cast.data.crew
-      this.entry_cast = cast.data.cast
-    }catch(e){
-      console.log(e)
-    }
+    const cast = await axios.get('https://api.themoviedb.org/3/tv/'+this.entry_id+'/credits?api_key='+this.api_key+'&language=en-US')
+    this.entry_crew = cast.data.crew
+    this.entry_cast = cast.data.cast
 
     //Add data to crew lists
     this.entry_crew.forEach(crewmember => {
@@ -146,14 +136,12 @@ export default {
     });
 
     //Get Show socials
-    try{
-      const socials = await axios.get('https://api.themoviedb.org/3/tv/'+this.entry_id+'/external_ids?api_key='+this.api_key)
-      this.socials = socials.data
-    }catch(e){
-      console.log(e)
-    }
+    const socials = await axios.get('https://api.themoviedb.org/3/tv/'+this.entry_id+'/external_ids?api_key='+this.api_key)
+    this.socials = socials.data
   },
+
   methods: {
+      //Methods for List Management
     inFavouriteShowsCheck(number){  
       return this.favouriteShows.some(entry => entry.id == number)
     },

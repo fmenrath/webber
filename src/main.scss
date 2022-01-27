@@ -1,5 +1,4 @@
-@import url('https://rsms.me/inter/inter.css');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
 // GENERAL SETTINGS
 
 :root{
@@ -144,7 +143,7 @@ body{
 }
 
 #app {
-   font-family: 'Inter', sans-serif;
+   font-family: 'Montserrat', sans-serif;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    text-align: center;
@@ -357,7 +356,7 @@ body{
                   outline: none;
                   font-weight: 400;
                   font-size: 1em;
-                  font-family: 'Inter';
+                  font-family: 'Montserrat';
                   cursor: pointer;
                   color: var(--black);
                }
@@ -480,7 +479,7 @@ body{
                background: none;
                width: 30px;
                text-align: center;
-               font-family: 'Inter';
+               font-family: 'Montserrat';
                font-weight: 400;
                color: var(--black);
             
@@ -798,8 +797,91 @@ body{
 
 }
 
+// FAVOURITES
 
+.favourites-wrapper{
+   max-width: var(--width);
+   margin: 0 auto;
+   padding: 0 10px;
 
+   .favourites{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-top: 50px;
+      grid-gap: 5em;
+      width: 100%;
+
+      .favourite-movies, .favourite-shows{
+         width:  100%;
+
+         .favourites-header{
+            text-align: left;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1.4em;
+            margin-bottom: 20px;
+         }
+
+         ul{
+
+            li{
+
+               a{
+
+                  .favourite-entry{
+                     height: 110px;
+                     background-color: gray;
+                     margin-bottom: 10px;
+                     transition: none;
+                     border-radius: 2px;
+                     background-size: 100% !important;
+                     box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px, rgb(0 0 0 / 8%) 0px 0px 0px 1px;
+
+                     &:hover{
+
+                        .favourite-info{
+                           backdrop-filter: grayscale(0);
+                           left: 5px;
+                        }
+                     }
+
+                     .favourite-info{
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        text-align: left;
+                        padding-left: 25px;
+                        height: 100%;
+                        position: relative;
+                        left: 0;
+                        transition: backdrop-filter 0.15s ease-in-out, left 0.15s ease-in-out;
+                        backdrop-filter: grayscale(0.1);
+
+                        .favourite-name{
+                           color: var(--white);
+                           font-size: 1.3em;
+                           font-weight: 500;
+                           margin-bottom: 5px;
+                        }
+
+                        p{
+                           font-weight: 400;
+                           color: gray;
+                           font-size: 0.9em;
+                        }
+                     }
+                  }
+               }
+            }
+         }
+         
+         .no-favourites{
+            text-align: left;
+            color: #757575;
+         }
+      }
+   }
+}
 
 
 

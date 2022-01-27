@@ -42,7 +42,7 @@
       <div class="actions">
         <div href="" class="toggle-favourites">
           <img v-if="inFavouriteShowsCheck(entry.id)" src="../assets/heart-solid.svg" class="heart" alt="" @click="removeFromFavouriteShows(entry.id)">
-          <img v-else src="../assets/heart.svg" class="heart" alt="" @click="addToFavouriteShows(entry.id)">
+          <img v-else src="../assets/heart.svg" class="heart" alt="" @click="addToFavouriteShows(entry)">
         </div>
         
         <!-- Social Media Links -->
@@ -145,8 +145,8 @@ export default {
     inFavouriteShowsCheck(number){  
       return this.favouriteShows.some(entry => entry.id == number)
     },
-    addToFavouriteShows(number){
-      this.$emit('addToFavouriteShows', number)
+    addToFavouriteShows(entry){
+      this.$emit('addToFavouriteShows', entry)
     },
     removeFromFavouriteShows(number){
       this.$emit('removeFromFavouriteShows', number)

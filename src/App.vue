@@ -36,28 +36,22 @@ export default{
   },
   methods: {
     //Adding a movie or show to favourites
-    addToFavouriteMovies(number){
-      var item = {
-        id: number
-      }
+    addToFavouriteMovies(item){
       this.favouriteMovies.push(item)
     },
-    addToFavouriteShows(number){
-      var item = {
-        id: number
-      }
+    addToFavouriteShows(item){
       this.favouriteShows.push(item)
     },
 
     //Removing a movie or show from favourites
-    removeFromFavouriteMovies(number){
+    removeFromFavouriteMovies(movie_id){
       this.favouriteMovies = this.favouriteMovies.filter(function( obj ) {
-        return obj.id !== number;
+        return obj.id !== movie_id;
       })
     },
-    removeFromFavouriteShows(number){
+    removeFromFavouriteShows(show_id){
       this.favouriteShows = this.favouriteShows.filter(function( obj ) {
-        return obj.id !== number;
+        return obj.id !== show_id;
       })
     },
   }

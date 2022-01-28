@@ -8,10 +8,10 @@
       <nav>
         <ul class="nav-links">
           <button class="dark-mode-toggle" @click="toggleDarkMode()"></button>
+          <li class="nav-link"><router-link to="/search/"><img src="../assets/search-solid.svg" alt="search" id="search-icon"></router-link></li>
           <li class="nav-link"><router-link to="/">Home</router-link></li>
           <li class="nav-link"><router-link to="/favourites/">Favourites</router-link></li>
           <li class="nav-link"><router-link to="/about/">About</router-link></li>
-          <li class="nav-link"><img src="../assets/search-solid.svg" alt="search" id="search-icon"></li>
         </ul>
       </nav>
     </div>

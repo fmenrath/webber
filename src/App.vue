@@ -34,18 +34,47 @@ export default{
     return{
       favouriteMovies: [],
       favouriteShows: [],
-      gridSizePreference: 5
+      gridSizePreference: 6
+    }
+  },
+  mounted(){
+    //Retrieve favourite lists from local storage
+    if(localStorage.favouriteMovies){
+      this.favouriteMovies = JSON.parse(localStorage.favouriteMovies)
+    }
+    if(localStorage.favouriteShows){
+      this.favouriteShows = JSON.parse(localStorage.favouriteShows)
+    }
+    if(localStorage.gridSizePreference){
+      this.gridSizePreference = JSON.parse(localStorage.gridSizePreference)
+    }
+  },
+  watch: {
+    favouriteMovies: {
+      handler(updatedMovies){
+        localStorage.favouriteMovies = JSON.stringify(updatedMovies)
+      },
+      deep: true
+    },
+    favouriteShows: {
+      handler(updatedShows){
+        localStorage.favouriteShows = JSON.stringify(updatedShows)
+      },
+      deep: true
+    },
+    gridSizePreference: {
+      handler(newGridSize){
+        localStorage.gridSizePreference = JSON.stringify(newGridSize)
+      }
     }
   },
   methods: {
     //Adding a movie or show to favourites
     addToFavouriteMovies(item){
       this.favouriteMovies.push(item)
-      console.log(this.favouriteMovies)
     },
     addToFavouriteShows(item){
       this.favouriteShows.push(item)
-      console.log(this.favouriteShows)
     },
 
     //Removing a movie or show from favourites
@@ -59,6 +88,8 @@ export default{
         return obj.id !== show_id;
       })
     },
+
+    //Change movie grid size
     changeGridSize(value){
       this.gridSizePreference = value
       //Get grid and change column count

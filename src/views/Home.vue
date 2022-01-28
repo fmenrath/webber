@@ -15,7 +15,7 @@
         <div class="filter-right">
           <div class="slider-wrapper">
             <img src="../assets/expand-alt.svg" class="filter-icon" id="expand-icon" alt="">
-            <input type="range" min="3" max="7" :value="gridSizePreference" class="slider" id="grid-size-slider" @change="changeGridSize()">
+            <input type="range" min="5" max="7" :value="gridSizePreference" class="slider" id="grid-size-slider" @change="changeGridSize()">
           </div>
           <div class="sort-results">
             <img src="../assets/sort.svg" class="filter-icon" id="sort-icon" alt="">
@@ -28,12 +28,12 @@
           </div>
         </div>
       </section>
-      <section class="movies-grid hidden">
+      <section class="movies-grid">
         <div v-for="movie in movie_list" :key="movie.id" class="movie-card">
           <router-link :to="{ path: '/'+type+'/' + movie.id}">
             <div class="movie-poster-wrapper">
               
-              <img :src="'https://image.tmdb.org/t/p/w780'+movie.poster_path" alt="" class="movie-poster">
+              <img :src="'https://image.tmdb.org/t/p/w342'+movie.poster_path" alt="" class="movie-poster">
               <div class="rating-bar">
                 <div class="rating-score" :style="{width: movie.vote_average*10 + '%', background: getColor(movie.vote_average/10)}"></div>
               </div>
@@ -182,7 +182,6 @@ export default {
       document.querySelector('[data-id="'+this.page+'"]').classList.remove("active")
       this.page = pageNr;
       this.refreshGrid();
-      document.getElementById("app").scrollIntoView()
     },
     getColor(value){
       //value from 0 to 1

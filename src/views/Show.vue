@@ -79,7 +79,8 @@
       <ul>
         <li v-for="actor in entry_cast" :key="actor.id">
           <div class="cast-member">
-            <img :src="'https://image.tmdb.org/t/p/w300'+actor.profile_path" alt="">
+            <img v-if="(actor.profile_path!=null)" :src="'https://image.tmdb.org/t/p/w300'+actor.profile_path" alt="cast_member">
+            <img v-else src="../assets/placeholder_portrait.png" class="filter-invert" alt="cast_member_no_picture" >
             <span class="real-name">{{actor.name}}</span>
             <span class="role-name">{{actor.character}}</span>
           </div>

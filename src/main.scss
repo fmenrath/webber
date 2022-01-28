@@ -181,7 +181,7 @@ body{
          height: 100%;
          width: 100%;
          margin: 0 auto;
-         padding: 0 10px;
+         padding: 0 20px;
 
          .app-logo{
             display: flex;
@@ -265,11 +265,12 @@ body{
       .movies{
          max-width: var(--width);
          margin: 0 auto;
+         padding: 0 20px;
          
          .movies-filter{
             height: 110px;
             width: 100%;
-            padding: 60px 10px 25px;           
+            padding: 60px 0 25px;           
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
@@ -403,7 +404,7 @@ body{
             grid-column-gap: 2.2em;
             grid-row-gap: 1.5em;
             width: 100%;
-            padding: 10px;
+            padding: 10px 0;
             transition: opacity 0.15s ease-in-out, filter 1s -webkit-filter-linear;
 
             .movie-card{
@@ -846,12 +847,12 @@ body{
 .favourites-wrapper{
    max-width: var(--width);
    margin: 0 auto 30px;
-   padding: 0 10px;
+   padding: 0 20px;
 
    .favourites{
       display: grid;
       grid-template-columns: 1fr 1fr;
-      margin-top: 50px;
+      padding-top: 50px;
       grid-gap: 6em;
       width: 100%;
       position: relative;
@@ -883,7 +884,6 @@ body{
             font-weight: 600;
             font-size: 1.7em;
             margin-bottom: 20px;
-            margin-left: 10px;
          }
 
          ul{
@@ -966,7 +966,7 @@ body{
 
                .remove-favourite{
                   display: flex;
-                  height: 24px;
+                  height: 24px !important;
                   position: absolute;
                   top: 0;
                   right: 8px;
@@ -977,7 +977,7 @@ body{
                      height: 24px;
                      filter: invert(1);
                      position: relative;
-                     align-self: center;
+                     top: 63px;
                      background: #e4e4e475;
                      border-radius: 20px;
                      transition: transform 0.15s ease-in-out;
@@ -996,7 +996,6 @@ body{
             color: var(--text_light);
             font-size: 1.1em;
             line-height: 1.4;
-            margin-left: 10px;
          }
       }
    }

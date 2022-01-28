@@ -6,11 +6,11 @@
             <ul v-if="favouriteMovies.length>0">
                <li v-for="movie in favouriteMovies" :key="movie.id">
                   <router-link :to="{ path: '/movie/' + movie.id}">
-                     <div class="favourite-entry" :style="{background: 'linear-gradient(270deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), url(https://image.tmdb.org/t/p/original'+movie.backdrop_path+')'}">
+                     <div class="favourite-entry" :style="{background: 'linear-gradient(270deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%), url(https://image.tmdb.org/t/p/original'+movie.backdrop_path+')'}">
                         <div class="favourite-content">
                            <div class="favourite-info">
                               <h2 class="favourite-name">{{movie.title}}</h2>
-                              <span class="favourite-year_runtime">{{movie.release_date.slice(0,4)}}&nbsp;&nbsp;&nbsp;&nbsp;{{convertRuntime(movie.runtime)}}</span>
+                              <span class="favourite-year_runtime">{{movie.release_date.slice(0,4)}}&nbsp;&nbsp;|&nbsp;&nbsp;{{convertRuntime(movie.runtime)}}</span>
                               <div class="favourite-genre-list">
                                  <span v-for="genre in movie.genres" :key="genre.id">{{genre.name}}</span>
                               </div>
@@ -30,13 +30,13 @@
             <ul v-if="favouriteShows.length>0">
                <li v-for="show in favouriteShows" :key="show.id">
                   <router-link :to="{ path: '/tv/' + show.id}">
-                     <div class="favourite-entry" :style="{backgroundImage:'linear-gradient(270deg, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%), url(https://image.tmdb.org/t/p/original'+show.backdrop_path+')'}">
+                     <div class="favourite-entry" :style="{backgroundImage:'linear-gradient(270deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.7) 100%), url(https://image.tmdb.org/t/p/original'+show.backdrop_path+')'}">
                         <div class="favourite-content">
                            <div class="favourite-info">
                               <h2 class="favourite-name">{{show.name}}</h2>
-                              <span>{{show.first_air_date.slice(0,4)}}-{{show.last_air_date.slice(0,4)}}, 
-                                 <span v-if="show.seasons.length==1">{{show.seasons.length}} season</span>
-                                 <span v-else>{{show.seasons.length}} seasons</span>
+                              <span>{{show.first_air_date.slice(0,4)}}-{{show.last_air_date.slice(0,4)}}
+                                 <span v-if="show.seasons.length==1">&nbsp;&nbsp;|&nbsp;&nbsp;{{show.seasons.length}} season</span>
+                                 <span v-else>&nbsp;&nbsp;|&nbsp;&nbsp;{{show.seasons.length}} seasons</span>
                               </span>
                               <div class="favourite-genre-list">
                                  <span v-for="genre in show.genres" :key="genre.id">{{genre.name}}</span>

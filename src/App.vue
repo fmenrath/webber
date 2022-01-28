@@ -9,6 +9,8 @@
       @removeFromFavouriteShows="removeFromFavouriteShows"
       :favouriteMovies="favouriteMovies"
       :favouriteShows="favouriteShows"
+      @changeGridSize="changeGridSize"
+      :gridSizePreference="gridSizePreference"
       ></router-view>
   </main>
   <Footer/>
@@ -31,16 +33,19 @@ export default{
   data(){
     return{
       favouriteMovies: [],
-      favouriteShows: []
+      favouriteShows: [],
+      gridSizePreference: 6
     }
   },
   methods: {
     //Adding a movie or show to favourites
     addToFavouriteMovies(item){
       this.favouriteMovies.push(item)
+      console.log(this.favouriteMovies)
     },
     addToFavouriteShows(item){
       this.favouriteShows.push(item)
+      console.log(this.favouriteShows)
     },
 
     //Removing a movie or show from favourites
@@ -54,6 +59,12 @@ export default{
         return obj.id !== show_id;
       })
     },
+    changeGridSize(value){
+      this.gridSizePreference = value
+      //Get grid and change column count
+      var grid = document.querySelector(".movies-grid")
+      grid.style.gridTemplateColumns = 'repeat('+this.gridSizePreference+', 1fr)'
+    }
   }
 }
 </script>

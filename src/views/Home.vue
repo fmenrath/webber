@@ -15,7 +15,7 @@
         <div class="filter-right">
           <div class="slider-wrapper">
             <img src="../assets/expand-alt.svg" class="filter-icon" alt="">
-            <input type="range" min="3" max="8" value="6" class="slider" id="grid-size-slider" @change="changeGridSize()">
+            <input type="range" min="3" max="8" :value="gridSizePreference" class="slider" id="grid-size-slider" @change="changeGridSize()">
           </div>
           <div class="sort-results">
             <img src="../assets/sort.svg" class="filter-icon" alt="">
@@ -32,10 +32,7 @@
         <div v-for="movie in movie_list" :key="movie.id" class="movie-card">
           <router-link :to="{ path: '/'+type+'/' + movie.id}">
             <div class="movie-poster-wrapper">
-              <a class="movie-bookmark">
-                <img src="../assets/heart.svg" class="heart" alt="">
-                <img src="../assets/heart-solid.svg" class="heart-full" alt="">
-              </a>
+              
               <img :src="'https://image.tmdb.org/t/p/w780'+movie.poster_path" alt="" class="movie-poster">
               <div class="rating-bar">
                 <div class="rating-score" :style="{width: movie.vote_average*10 + '%', background: getColor(movie.vote_average/10)}"></div>
@@ -45,6 +42,10 @@
               <div class="movie-title">{{movie.title}} {{movie.name}}</div>
             </div>
           </router-link>
+          <a class="movie-bookmark">
+            <img v-if="inFavouritesCheck(movie.id)" src="../assets/heart-solid.svg" class="heart-full" alt="" @click="removeFromFavourites(movie.id)">
+            <img v-else src="../assets/heart.svg" class="heart" alt="" @click="addToFavourites(movie.id)">
+          </a>
         </div>
       </section>
       <section class="page-select">
@@ -74,17 +75,18 @@ export default {
       type: "movie",
       sort: "popular",
       api_key: "13b853544d79c335a990b1e0c5825913",
-      page: 1,
-      favouriteShows: this.favouriteShows, 
-      favouriteMovies: this.favouriteMovies,
+      page: 1
     }
   },
+  props: ['favouriteShows', 'favouriteMovies', 'gridSizePreference'],
+  emits: ['addToFavouriteShows', 'removeFromFavouriteShows', 'addToFavouriteMovies', 'removeFromFavouriteMovies'],
   async created() {
     // Load popular-movies as default
     try{
       const res = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key='+this.api_key+'&language=en-US')
       this.movie_list = res.data.results
       var grid = document.querySelector(".movies-grid")
+      grid.style.gridTemplateColumns = 'repeat('+this.gridSizePreference+', 1fr)'
       grid.classList.remove("hidden")
     }
     catch(e){
@@ -116,7 +118,6 @@ export default {
       }
       this.refreshGrid()
     },
-
     async refreshGrid(){
       //Display the correct page number in the page select section
       document.querySelector('[data-id="'+this.page+'"]').classList.add("active")
@@ -130,6 +131,10 @@ export default {
       var sort_name_element = document.querySelector(".selected-sort")
       var type_name = ''
       var sort_name = this.sort.replace(/_/g, ' ');
+
+      //Use the preference for grid size
+      var grid = document.querySelector(".movies-grid")
+      grid.style.gridTemplateColumns = 'repeat('+this.gridSizePreference+', 1fr)'
 
       if(this.type=="tv"){
         type_name = " TV shows"
@@ -147,7 +152,6 @@ export default {
       }
 
       //Hide grid
-      var grid = document.querySelector(".movies-grid")
       grid.classList.add("hidden")
 
       //Wait 
@@ -180,11 +184,33 @@ export default {
     changeGridSize(){
       //Get slider value
       var size = document.getElementById("grid-size-slider").value
-
-      //Get grid and change column count
-      var grid = document.querySelector(".movies-grid")
-      grid.style.gridTemplateColumns = 'repeat('+size+', 1fr)'
-
+      this.$emit('changeGridSize', size)
+    },
+    inFavouritesCheck(number){
+      if (this.type=="tv"){
+        return this.favouriteShows.some(entry => entry.id == number)
+      }
+      else{
+        return this.favouriteMovies.some(entry => entry.id == number)
+      }
+    },
+    removeFromFavourites(id){
+      if (this.type=="tv"){
+        this.$emit('removeFromFavouriteShows', id)
+      }
+      else{
+        this.$emit('removeFromFavouriteMovies', id)
+      }
+    },
+    async addToFavourites(id){
+      if (this.type=="tv"){
+        const res = await axios.get('https://api.themoviedb.org/3/tv/'+id+'?api_key='+this.api_key+'&language=en-US')
+        this.$emit('addToFavouriteShows', res.data)
+      }
+      else{
+        const res = await axios.get('https://api.themoviedb.org/3/movie/'+id+'?api_key='+this.api_key+'&language=en-US')
+        this.$emit('addToFavouriteMovies', res.data)
+      }
     }
   }
 }

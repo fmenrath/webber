@@ -10,24 +10,27 @@
    --accent_darker: #11a252;
    --background: #f3f3f3;
    --background_lighter: #dadada;
+   --cast_card: gainsboro;
    --header: #151515;
    --white: #fafafa;
    --filter_invert: invert(0);
    --filter_studio_invert: grayscale(1) invert(0);
    --filter_black_to_accent: invert(35%) sepia(72%) saturate(5114%) hue-rotate(139deg) brightness(107%) contrast(87%);
-
+   --dark_mode_toggle_pos: 4px;
 
 }
 
 [data-theme="dark"] { //DARK THEME VARIABLES
    --background: #0e0e0e;
    --background_lighter: #222222;
+   --cast_card: #121212;
    --accent: #2bd176;
    --text_light: rgb(167, 167, 167);
    --text_strong: rgb(235, 235, 235);
    --invert: invert(1);
    --filter_studio_invert: grayscale(1) invert(1);
    --filter_black_to_accent: invert(67%) sepia(53%) saturate(639%) hue-rotate(92deg) brightness(94%) contrast(82%);
+   --dark_mode_toggle_pos: 28px;
 }
 
 *{
@@ -203,7 +206,6 @@ body{
             height: 100%;
 
             .dark-mode-toggle{
-               background:0;
                border: 0;
                box-sizing: border-box;
                cursor: pointer;
@@ -218,13 +220,13 @@ body{
                   content: '';
                   width: 18px;
                   height: 18px;
-                  background-color: var(--text_strong);
+                  background-color: var(--background_lighter);
                   position: absolute;
-                  left: 4px;
+                  left: var(--dark_mode_toggle_pos);
                   top: 3px;
                   border-radius: 30px;
                   box-shadow: rgba(50, 50, 93, 0.15) 0px 2px 5px -1px, rgba(0, 0, 0, 0.1) 0px 1px 3px -1px;
-                  transition: left 0.3s ease-in-out, background-color 0.3s ease-in-out, 
+                  transition: left 0.15s ease-in-out, background-color 0.15s ease-in-out, 
                }
             }
 
@@ -239,7 +241,18 @@ body{
                   top: 1px;
 
                   &:hover{
-                     color: var(--accent);
+                     color: white;
+                  }
+               }
+               #search-icon{
+                  height: 20px;
+                  position: relative;
+                  top: 4px;
+                  filter: brightness(2);
+                  cursor: pointer;
+
+                  &:hover{
+                     filter: brightness(3);
                   }
                }
             }
@@ -386,7 +399,6 @@ body{
             
          .movies-grid{
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
             grid-template-rows: auto;
             grid-column-gap: 2.2em;
             grid-row-gap: 1.5em;
@@ -398,46 +410,40 @@ body{
                display: flex;
                flex-direction: column;
                transition: transform 0.15s ease-in-out;
+               position: relative;
             
             &:hover{
                transform: scale(1.05);
                z-index: 1000;
             }
+               .movie-bookmark{
+                  position: absolute;
+                  font-size: 1.2em;
+                  top: 5px;
+                  filter: invert(52%) sepia(72%) saturate(440%) hue-rotate(95deg) brightness(99%) contrast(92%) drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.1));
+                  left: 7px;
+                  opacity: 0;
+                  transition: opacity 0.15s ease-in-out;
+                  cursor: pointer;
 
-               .movie-poster-wrapper{
-                  position: relative;
-
-                  .movie-bookmark{
+                  .heart, .heart-full{
+                     height: 25px;
+                     width: 25px;
                      position: absolute;
-                     font-size: 1.2em;
-                     top: 5px;
-                     filter: invert(52%) sepia(72%) saturate(440%) hue-rotate(95deg) brightness(99%) contrast(92%) drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.1));
-                     left: 7px;
-                     opacity: 0;
-                     transition: opacity 0.15s ease-in-out;
+                     transition: transform 0.15s ease-in-out;
 
-                     .heart{
-                        height: 25px;
-                        width: 25px;
-                        position: absolute;
-                     }
-                     .heart-full{
-                        height: 25px;
-                        width: 25px;
-                        position: absolute;
-                        opacity: 0;
-                        transition: opacity 0.15s ease-in-out;
-
-                        &:hover{
-                           opacity: 1;
-                        }
+                     &:hover{
+                        transform: scale(1.1);
                      }
                   }
+               }
+               .movie-poster-wrapper{
+                  position: relative;
 
                   .movie-poster{
                      width: 100%;
                      height: 100%;
-                     border-radius: 2px;
+                     border-radius: 3px;
                      box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px, rgb(0 0 0 / 8%) 0px 0px 0px 1px;
                      aspect-ratio: 10/15;
                   }
@@ -472,15 +478,13 @@ body{
 
                .movie-info{
                   height: 3em;
-                  max-height: 20%;
                   position: relative;
                   bottom: 4px;
                   background: transparent;
                   color: var(--text_light);
-                  font-weight: 400;
+                  font-weight: 500;
                   margin-top: 16px;
                   text-transform: uppercase;
-                  font-size: .95em;
                   text-align: center;
                }
             }
@@ -704,7 +708,12 @@ body{
 
                   .social-media-icon{
                      filter: var(--invert);
-                     opacity: 0.5;
+                     opacity: 0.4;
+                     transition: opacity 0.1s ease-in-out;
+
+                     &:hover{
+                        opacity: 0.6;
+                     }
                   }
                }
             }
@@ -796,15 +805,21 @@ body{
          li .cast-member{
             display: flex;
             flex-direction: column;
-            width: 130px;
-            margin-right: 56px;
+            width: 150px;
+            height: 300px;
+            margin-right: 10px;
             text-align: center;
+            text-align: left;
+            background: var(--cast_card);
+            border-radius: 3px;
 
             img{
-               width: 96%;
-               border-radius: 4px;
-               margin: 0 auto;
-               filter: grayscale(.5);
+               width: 100%;
+               border-radius: 3px 3px 0 0;
+               filter: grayscale(0.4);
+               height: 200px;
+               object-fit: cover;
+               object-position: top;
             }
 
             .real-name{
@@ -812,11 +827,13 @@ body{
                font-size: 0.95em;
                font-weight: 500;
                margin: 0.7em 0 0.4em;
+               padding: 0 10px;
             }
             .role-name{
                color: var(--text_light);
                font-size: 0.9em;
                font-weight: 400;
+               padding: 0 10px;
             }
 
          }
@@ -828,7 +845,7 @@ body{
 // FAVOURITES
 .favourites-wrapper{
    max-width: var(--width);
-   margin: 0 auto;
+   margin: 0 auto 30px;
    padding: 0 10px;
 
    .favourites{
@@ -885,17 +902,14 @@ body{
                      background-size: 100% !important;
                      box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px, rgb(0 0 0 / 8%) 0px 0px 0px 1px;
                      position: relative;
+                     transform: scale(1.00);
+                     transition: transform 0.1s linear;
 
                      &:hover{
-
-                        .favourite-name{
-                              left: 4px !important;
-                           }
-                        }
+                        transform: scale(1.015);
+                     }
 
                      .favourite-content{
-                        display: flex;
-                        justify-content: space-between;
                         height: 100%;
                         width: 100%;
                         
@@ -908,6 +922,8 @@ body{
                            height: 100%;
                            left: 0;
                            width: 100%;
+                           position: relative;
+                           bottom: 5px;
 
                            .favourite-name{
                               color: var(--white);
@@ -921,7 +937,7 @@ body{
                            }
 
                            span{
-                              font-weight: 400;
+                              font-weight: 500;
                               color: #a6a6a6;
                               font-size: .95em;
                            }
@@ -931,7 +947,7 @@ body{
                               font-weight: 500;
                               font-size: 0.85em;
                               position: absolute;
-                              bottom: 10px;
+                              bottom: 4px;
                               left: 20px;
 
                               span{

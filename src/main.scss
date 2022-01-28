@@ -671,7 +671,6 @@ body{
       .actions{
          margin-left: 5em;
          display: flex;
-         justify-content: end;
          align-items: center;
          position: relative;
 
@@ -967,24 +966,21 @@ body{
                }
 
                .remove-favourite{
-                  display: flex;
                   height: 24px !important;
                   position: absolute;
-                  top: 0;
-                  right: 8px;
+                  top: 3px;
+                  right: 3px;
                   height: 100%;
                   cursor: pointer;
 
                   img{
-                     height: 24px;
+                     opacity: 0.7;
+                     mix-blend-mode: difference;
                      filter: invert(1);
-                     position: relative;
-                     top: 63px;
-                     background: #e4e4e475;
                      border-radius: 20px;
                      transition: transform 0.15s ease-in-out;
-                     transform: scale(1.0);
-
+                     transform: scale(1);
+                     
                      &:hover{
                         transform: scale(1.1);
                      }

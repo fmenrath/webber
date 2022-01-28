@@ -1000,3 +1000,12 @@ body{
       }
    }
 }
+
+
+
+//VIEWPORTS
+@media only screen and (max-width: 700px) {
+   body {
+     background-color: lightblue;
+   }
+ }

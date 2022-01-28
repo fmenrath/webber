@@ -15,7 +15,7 @@
         <div class="filter-right">
           <div class="slider-wrapper">
             <img src="../assets/expand-alt.svg" class="filter-icon" alt="">
-            <input type="range" min="3" max="8" :value="gridSizePreference" class="slider" id="grid-size-slider" @change="changeGridSize()">
+            <input type="range" min="3" max="7" :value="gridSizePreference" class="slider" id="grid-size-slider" @change="changeGridSize()">
           </div>
           <div class="sort-results">
             <img src="../assets/sort.svg" class="filter-icon" alt="">
@@ -116,6 +116,13 @@ export default {
       else{
         this.type = "tv"
       }
+
+      //Go to Page 1 if not already there
+      if(this.page!=1){
+        document.querySelector('[data-id="'+this.page+'"]').classList.remove("active")
+        this.page = 1
+      }
+      //reload Grid
       this.refreshGrid()
     },
     async refreshGrid(){

@@ -34,7 +34,7 @@ export default{
     return{
       favouriteMovies: [],
       favouriteShows: [],
-      gridSizePreference: 6
+      gridSizePreference: 5
     }
   },
   methods: {

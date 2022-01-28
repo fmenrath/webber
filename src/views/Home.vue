@@ -14,11 +14,11 @@
         </div>
         <div class="filter-right">
           <div class="slider-wrapper">
-            <img src="../assets/expand-alt.svg" class="filter-icon" alt="">
+            <img src="../assets/expand-alt.svg" class="filter-icon" id="expand-icon" alt="">
             <input type="range" min="3" max="7" :value="gridSizePreference" class="slider" id="grid-size-slider" @change="changeGridSize()">
           </div>
           <div class="sort-results">
-            <img src="../assets/sort.svg" class="filter-icon" alt="">
+            <img src="../assets/sort.svg" class="filter-icon" id="sort-icon" alt="">
             <select name="sort" class="sort-select" @change="refreshGrid()">
               <option value="popular">Popularity</option>
               <option value="top_rated">Top Rated</option>

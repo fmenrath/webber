@@ -1,9 +1,9 @@
 <template>
   <header>
     <div class="header-area">
-      <router-link to="/" class="vimivo-logo">
-        <img src="../assets/logo.png" alt="vimivo-icon" class="vimivo-icon">
-        <span class="vimivo-text">vimivo</span>
+      <router-link to="/" class="app-logo">
+        <img src="../assets/icon.png" alt="app-icon" class="app-icon">
+        <span class="app-text">webber</span>
       </router-link> 
       <nav>
         <ul class="nav-links">

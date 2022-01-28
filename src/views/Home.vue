@@ -41,9 +41,6 @@
                 <div class="rating-score" :style="{width: movie.vote_average*10 + '%', background: getColor(movie.vote_average/10)}"></div>
               </div>
             </div>
-            <div class="movie-hover-overlay">
-              <div class="overlay-card"></div>
-            </div>
             <div class="movie-info">
               <div class="movie-title">{{movie.title}} {{movie.name}}</div>
             </div>

@@ -2,7 +2,7 @@
    <div class="favourites-wrapper">
       <div class="favourites">
          <div class="favourite-movies">
-            <h1 class="favourites-header">Your favourite <span class="white">movies</span></h1>
+            <h1 class="favourites-header">Favourite <span class="text-strong">movies</span></h1>
             <ul v-if="favouriteMovies.length>0">
                <li v-for="movie in favouriteMovies" :key="movie.id">
                   <router-link :to="{ path: '/movie/' + movie.id}">
@@ -26,7 +26,7 @@
             <div v-else class="no-favourites">You do not have any favourite movies.</div>
          </div>
          <div class="favourite-shows">
-            <h1 class="favourites-header">Your favourite <span class="white">TV shows</span></h1>
+            <h1 class="favourites-header">Favourite <span class="text-strong">TV shows</span></h1>
             <ul v-if="favouriteShows.length>0">
                <li v-for="show in favouriteShows" :key="show.id">
                   <router-link :to="{ path: '/tv/' + show.id}">

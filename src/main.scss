@@ -14,17 +14,20 @@
    --white: #fafafa;
    --filter_invert: invert(0);
    --filter_studio_invert: grayscale(1) invert(0);
-   --filter_black_to_accent: invert(59%) sepia(46%) saturate(667%) hue-rotate(94deg) brightness(92%) contrast(89%);
+   --filter_black_to_accent: invert(35%) sepia(72%) saturate(5114%) hue-rotate(139deg) brightness(107%) contrast(87%);
+
+
 }
 
 [data-theme="dark"] { //DARK THEME VARIABLES
    --background: #0e0e0e;
    --background_lighter: #222222;
-   --accent: #33e684;
+   --accent: #2bd176;
    --text_light: rgb(167, 167, 167);
    --text_strong: rgb(235, 235, 235);
    --invert: invert(1);
-   --logo_invert: grayscale(1) invert(1);
+   --filter_studio_invert: grayscale(1) invert(1);
+   --filter_black_to_accent: invert(67%) sepia(53%) saturate(639%) hue-rotate(92deg) brightness(94%) contrast(82%);
 }
 
 *{
@@ -46,6 +49,10 @@ main{
    min-height: calc(100vh - 140px); //pages must always be long enough to scroll
 }
 
+//UTILITY CLASSES
+.text-strong{
+   color: var(--text_strong);
+}
 
 //SCROLLBARS
 ::-webkit-scrollbar{
@@ -117,6 +124,7 @@ main{
          margin-right: .5em;
          position: relative;
          top: 0.1em;
+         filter: var(--filter_black_to_accent);
       }
       .splash-text{
          font-size: 4em;
@@ -172,18 +180,18 @@ body{
          margin: 0 auto;
          padding: 0 10px;
 
-         .vimivo-logo{
+         .app-logo{
             display: flex;
             align-items: center;
          
-         
-            .vimivo-icon{
-               height: 35px;
+            .app-icon{
+               height: 30px;
+               filter: var(--filter_black_to_accent);
             }
             
-            .vimivo-text{
+            .app-text{
                font-weight: 600;
-               font-size: 2em;
+               font-size: 1.7em;
                margin-left: .3em;
                color: var(--accent);
             }
@@ -385,7 +393,6 @@ body{
             width: 100%;
             padding: 10px;
             transition: opacity 0.15s ease-in-out, filter 1s -webkit-filter-linear;
-            filter: blur(0px);
 
             .movie-card{
                display: flex;
@@ -488,21 +495,23 @@ body{
                cursor: pointer;
                padding: 4px 5px;
                margin: 3px;
-               border: 1px solid var(--background_lighter);
+               border: none;
                border-radius: 4px;
-               background: none;
+               background: var(--background_lighter);
                width: 25px;
                text-align: center;
                font-family: 'Montserrat';
-               font-weight: 400;
-               color: var(--text_strong);
+               font-weight: 500;
+               font-size: .9em;
+               color: var(--text_light);
             
                &:hover{
                   background: var(--background_lighter);
+                  color: var(--accent_darker);
                }
                &.active{
-                  background-color: var(--accent);
-                  color: var(--background);
+                  background-color: var(--accent_darker);
+                  color: var(--header);
                   font-weight: 500;
                }
             }
@@ -632,6 +641,7 @@ body{
             color: var(--text_light);
             font-weight: 400;
             line-height: 1.4;
+            font-size: 1.05em;
             text-align: justify;
          }
          .entry-genre-list{
@@ -738,7 +748,7 @@ body{
             .studio-logo{
                max-height: 18px;
                margin-right: 30px;
-               filter: var(--logo_invert);
+               filter: var(--filter_studio_invert);
                opacity: 0.4;
             }
          }
@@ -833,26 +843,18 @@ body{
          width:  100%;
       }
       .favourite-movies{
-         animation: slideFromLeft 0.2s ease-in-out;
+         animation: fadeInFavourites 0.2s ease-in-out;
       }
       .favourite-shows{
-         animation: slideFromRight 0.2s ease-in-out;
+         animation: fadeInFavourites 0.2s ease-in-out;
       }
 
-      @keyframes slideFromLeft {
+      @keyframes fadeInFavourites {
          0% {
-            transform: translateY(-25%);
+            opacity: 0;
          }
          100% {
-            transform: translateY(0%);
-         }
-      }
-      @keyframes slideFromRight {
-         0% {
-            transform: translateY(-25%);
-         }
-         100% {
-            transform: translateY(0%);
+            opacity: 1;
          }
       }
       

@@ -23,7 +23,7 @@
                   </div>
                </li>
             </ul>
-            <div v-else class="no-favourites">You do not have any favourite movies. <br> Add them to to this list with the  ♡ - icon.  </div>
+            <div v-else class="no-favourites">You do not have any favourite movies.</div>
          </div>
          <div class="favourite-shows">
             <h1 class="favourites-header">Your favourite <span class="white">TV shows</span></h1>
@@ -50,7 +50,7 @@
                   </div>
                </li>
             </ul>
-            <div v-else class="no-favourites">You do not have any favourite TV shows. <br>Add them to to this list with the  ♡ - icon.  </div>
+            <div v-else class="no-favourites">You do not have any favourite TV shows.</div>
          </div>
       </div>
    </div>

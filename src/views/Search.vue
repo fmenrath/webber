@@ -39,11 +39,10 @@ export default {
       async search(){
          var searchString = document.getElementById("searchbar-input").value
          var search = await axios.get('https://api.themoviedb.org/3/search/multi?api_key='+this.api_key+'&language=en-US&query='+searchString+'&page=1&include_adult=false')
-         search.data.results.forEach(result => {
-            console.log(result.media_type)
-         });
+         search.data.results = search.data.results.filter(function(obj) {
+            return obj.media_type !== 'person';
+         })
          this.searchResults = search.data.results
-         console.log(this.searchResults)
       }
    }
 }

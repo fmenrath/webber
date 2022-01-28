@@ -182,6 +182,7 @@ export default {
       document.querySelector('[data-id="'+this.page+'"]').classList.remove("active")
       this.page = pageNr;
       this.refreshGrid();
+      document.getElementById("app").scrollIntoView()
     },
     getColor(value){
       //value from 0 to 1

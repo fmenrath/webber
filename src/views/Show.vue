@@ -139,7 +139,9 @@ export default {
     const socials = await axios.get('https://api.themoviedb.org/3/tv/'+this.entry_id+'/external_ids?api_key='+this.api_key)
     this.socials = socials.data
   },
-
+  mounted(){
+    window.scrollTo(0, 0)
+  },
   methods: {
       //Methods for List Management
     inFavouriteShowsCheck(number){  

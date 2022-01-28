@@ -150,7 +150,9 @@ export default {
     const socials = await axios.get('https://api.themoviedb.org/3/movie/'+this.entry_id+'/external_ids?api_key='+this.api_key)
     this.socials = socials.data
   },
-
+  mounted(){
+    window.scrollTo(0, 0)
+  },
   methods: {
     convertRuntime(time){
       var hours = Math.floor(time/60)

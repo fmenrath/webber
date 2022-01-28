@@ -3,7 +3,7 @@
 
 // GENERAL SETTINGS
 :root{
-   --width: 1450px;
+   --width: 1600px;
    --text_strong: rgb(44, 44, 44);
    --text_light: rgb(78, 78, 78);
    --accent: #11a252;
@@ -17,7 +17,7 @@
    --filter_studio_invert: grayscale(1) invert(0);
    --filter_black_to_accent: invert(35%) sepia(72%) saturate(5114%) hue-rotate(139deg) brightness(107%) contrast(87%);
    --dark_mode_toggle_pos: 4px;
-
+   --side_padding: 30px;
 }
 
 [data-theme="dark"] { //DARK THEME VARIABLES
@@ -39,7 +39,7 @@
    padding: 0;
    text-decoration: none;
    list-style: none;
-   scroll-behavior: smooth;
+   // scroll-behavior: smooth;
    transition: background 0.25s ease-in-out, border-color 0.25s ease-in-out, color 0.15s ease-in-out, filter 0.25s ease-in-out;
 
 }
@@ -182,11 +182,12 @@ body{
          height: 100%;
          width: 100%;
          margin: 0 auto;
-         padding: 0 20px;
+         padding: 0 var(--side_padding);
 
          .app-logo{
             display: flex;
             align-items: center;
+            margin-right: 20px;
          
             .app-icon{
                height: 30px;
@@ -266,7 +267,7 @@ body{
       .movies{
          max-width: var(--width);
          margin: 0 auto;
-         padding: 0 20px;
+         padding: 0 var(--side_padding);
          
          .movies-filter{
             height: 110px;
@@ -305,8 +306,7 @@ body{
 
                   .type{
                      font-weight: 500;
-                     font-size: 0.95em;
-                     width: 119px;
+                     width: 130px;
                      color: var(--text_strong);
                      transition: color 0.15s ease-in-out;
                      cursor: pointer;
@@ -328,18 +328,18 @@ body{
                   &:after{
                      content: "";
                      position: absolute;
-                     width: 120px;
+                     width: 130px;
                      border-radius: 27.5px;
                      box-shadow: 0 2px 15px 0 rgba(0, 0, 0, .1);
                      background-color: var(--accent_darker);
                      height: 36px;
                      z-index: 10;
                      left: 0px;
-                     transition: left 0.2s ease-in-out;
+                     transition: left 0.3s cubic-bezier(.57,.21,.69,1.25);
                   }
                }
                .right:after{
-                  left: 120px;
+                  left: 130px;
                }
             }
             .slider-wrapper{
@@ -504,7 +504,7 @@ body{
                border: none;
                border-radius: 4px;
                background: var(--background_lighter);
-               width: 25px;
+               width: 28px;
                text-align: center;
                font-family: 'Montserrat';
                font-weight: 500;
@@ -532,6 +532,7 @@ body{
       background-color: transparent;
       color: var(--text_light);
       text-align: center;
+      padding: 0 20px;
    }
 }
 
@@ -579,7 +580,7 @@ body{
    .entry-wrapper{
       display: flex;
       max-width: var(--width);
-      padding: 50px 20px 50px;
+      padding: 50px var(--side_padding) 50px;
       margin: 0 auto;
 
       .image-wrapper{
@@ -784,7 +785,7 @@ body{
       animation-duration: 2s;
       opacity: 1;
       max-width: var(--width);
-      padding: 50px 20px 20px;
+      padding: 50px var(--side_padding) 20px;
       margin: 0 auto;
 
       .cast-header{
@@ -848,7 +849,7 @@ body{
 .favourites-wrapper{
    max-width: var(--width);
    margin: 0 auto 30px;
-   padding: 0 20px;
+   padding: 0 var(--side_padding);
 
    .favourites{
       display: grid;
@@ -1044,7 +1045,6 @@ body{
    .entry-details .entry-wrapper .actions{
       margin-left: 0;
       margin: 20px auto 0;
-
       justify-content: center;
    }
    .entry-details .entry-wrapper .actions ul li{
@@ -1055,5 +1055,8 @@ body{
       top: auto;
       bottom: 10px;
       margin: 0 30px 0 0;
+   }
+   .entry-details .entry-wrapper .actions ul{
+      display: flex;
    }
 }

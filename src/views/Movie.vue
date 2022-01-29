@@ -107,7 +107,7 @@
   <!-- List of similar movies-->
   <section class="list-block" id="similar-movies-list">
     <div class="list-block-wrapper">
-      <p class="list-block-header">Recommended movies</p>
+      <p class="list-block-header">Similar movies</p>
       <ul>
         <li v-for="movie in similarMovies" :key="movie.id">
           <router-link :to="'/movie/'+ movie.id">
@@ -176,7 +176,6 @@ export default {
     //Get similar movies
     const similar = await axios.get('https://api.themoviedb.org/3/movie/'+this.entry_id+'/similar?api_key='+this.api_key+'&language=en-US&page=1')
     this.similarMovies = similar.data.results
-    console.log(this.similarMovies)
   },
   mounted(){
     window.scrollTo(0, 0)

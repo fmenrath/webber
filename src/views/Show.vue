@@ -89,6 +89,25 @@
       </ul> 
     </div>
   </section>
+
+  <!-- List of similar shows-->
+  <section class="list-block" id="similar-shows-list">
+    <div class="list-block-wrapper">
+      <p class="list-block-header">Similar TV shows</p>
+      <ul>
+        <li v-for="show in similarShows" :key="show.id">
+          <router-link :to="'/movie/'+ show.id">
+            <div class="similar-movie">
+              <img v-if="(show.poster_path!=null)" :src="'https://image.tmdb.org/t/p/w300'+show.poster_path" alt="movie cover">
+              <img v-else src="../assets/placeholder_movie.jpg" class="filter-invert" alt="movie without cover picture" >
+              <span class="movie-title">{{show.title}}</span>
+              <span class="release-date">{{show.release_date.slice(0,4)}}</span>
+            </div>
+          </router-link>
+        </li>
+      </ul> 
+    </div>
+  </section>
 </template>
 
 
@@ -107,8 +126,9 @@ export default {
       writers: [],
       socials: [],
       seasonCount: 0,
+      similarShows: [],
       entry_id: this.$route.params.id,
-      api_key: "13b853544d79c335a990b1e0c5825913",
+      api_key: "13b853544d79c335a990b1e0c5825913"
     }
   },
   props: ['favouriteShows', 'favouriteMovies'],
@@ -140,6 +160,10 @@ export default {
     //Get Show socials
     const socials = await axios.get('https://api.themoviedb.org/3/tv/'+this.entry_id+'/external_ids?api_key='+this.api_key)
     this.socials = socials.data
+
+    //Get similar shows
+    const similar = await axios.get('https://api.themoviedb.org/3/tv/'+this.entry_id+'/similar?api_key='+this.api_key+'&language=en-US&page=1')
+    this.similarShows = similar.data.results
   },
   mounted(){
     window.scrollTo(0, 0)

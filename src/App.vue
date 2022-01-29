@@ -11,6 +11,7 @@
       :favouriteShows="favouriteShows"
       @changeGridSize="changeGridSize"
       :gridSizePreference="gridSizePreference"
+      :key="$route.fullPath"
       ></router-view>
   </main>
   <Footer/>

@@ -104,9 +104,10 @@
     </div>
   </section>
 
+  <!-- List of similar movies-->
   <section class="list-block" id="similar-movies-list">
     <div class="list-block-wrapper">
-      <p class="list-block-header">Similar movies</p>
+      <p class="list-block-header">Recommended movies</p>
       <ul>
         <li v-for="movie in similarMovies" :key="movie.id">
           <router-link :to="'/movie/'+ movie.id">

@@ -1,6 +1,6 @@
 <template>
   <footer>
-    © 2022 Fabian Menrath | Fun Project enabled by Movie Database API v3.
+    © 2022 Fabian Menrath | Educational project enabled by Movie Database API v3.
   </footer>
 </template>
 

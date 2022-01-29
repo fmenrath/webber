@@ -34,7 +34,7 @@ export default{
     return{
       favouriteMovies: [],
       favouriteShows: [],
-      gridSizePreference: 6
+      gridSizePreference: 7
     }
   },
   mounted(){

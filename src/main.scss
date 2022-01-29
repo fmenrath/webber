@@ -535,6 +535,7 @@ body{
    }
    footer{
       height: 70px;
+      font-size: 0.8em;
       align-items: center;
       justify-content: center;
       display: flex;
@@ -1126,24 +1127,45 @@ body{
 
    .search-results-grid{
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
       grid-template-rows: auto;
-      grid-gap: 2.5em;
+      grid-row-gap: 3.5em;
+      grid-column-gap: 2em;
       margin-top: 30px;
 
       .result-card{
-         height: 300px;
-         width: 200px;
 
          a{
 
             .result-poster-wrapper{
-               height: 300px;
-               width: 200px;
+
 
                .result-poster{
-                  height: 300px;
-                  width: 200px;
+                  width: 100%;
+               }
+            }
+            .result-info{
+               display: flex;
+               flex-direction: column;
+               position: relative;
+               bottom: 4px;
+
+               .name{
+                  background-color: var(--header);
+                  color: var(--white);
+                  height: 50px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+               }
+               .result-type{
+                  background-color: var(--background_lighter);
+                  color: var(--text_light);
+                  text-align: center;
+                  text-transform: uppercase;
+                  font-weight: 500;
+                  font-size: 0.8em;
+                  padding: 3px 0;
                }
             }
          }

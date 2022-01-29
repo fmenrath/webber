@@ -16,7 +16,10 @@
                <img v-if="(result.media_type=='person' && result.profile_path!=null)" :src="'http://image.tmdb.org/t/p/w342'+result.profile_path" alt="" class="result-poster">
                <img v-else-if="(result.media_type=='person')" src="../assets/placeholder_portrait.png" alt="" class="result-poster filter-invert fit-img">
                <img v-else :src="'http://image.tmdb.org/t/p/w342'+result.poster_path" alt="" class="result-poster">
-               <p>{{result.id}}</p>
+            </div>
+            <div class="result-info">
+               <span class="name">{{result.name}}{{result.title}}</span>
+               <span class="result-type">{{result.media_type}}</span>
             </div>
           </router-link>
         </div>
@@ -39,9 +42,9 @@ export default {
       async search(){
          var searchString = document.getElementById("searchbar-input").value
          var search = await axios.get('https://api.themoviedb.org/3/search/multi?api_key='+this.api_key+'&language=en-US&query='+searchString+'&page=1&include_adult=false')
-         search.data.results = search.data.results.filter(function(obj) {
-            return obj.media_type !== 'person';
-         })
+         // search.data.results = search.data.results.filter(function(obj) {
+         //    return obj.media_type !== 'person';
+         // })
          this.searchResults = search.data.results
       }
    }

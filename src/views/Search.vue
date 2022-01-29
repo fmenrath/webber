@@ -2,10 +2,10 @@
    <section class="search-action">
       <div class="search-wrapper">
          <h2 id="search-header">Search for <span class="text-accent">{{searchString}}</span></h2>
-         <div class="searchbar">
-            <input type="text" @keyup="search()" v-model="searchString" placeholder="Movies, shows, actors etc." id="searchbar-input" autocomplete="off">
+         <form class="searchbar" @submit.prevent>
+            <input type="text" @change="search()" v-model="searchString" placeholder="Search for movies and shows..." id="searchbar-input" autocomplete="off">
             <img src="../assets/search-solid.svg" alt="search-logo" id="searchbar-icon">
-         </div>
+         </form>
       </div>
    </section>
    <section class="search-results">
@@ -15,11 +15,18 @@
             <div class="result-poster-wrapper">
                <img v-if="(result.media_type=='person' && result.profile_path!=null)" :src="'http://image.tmdb.org/t/p/w342'+result.profile_path" alt="" class="result-poster">
                <img v-else-if="(result.media_type=='person')" src="../assets/placeholder_portrait.png" alt="" class="result-poster filter-invert fit-img">
+               <img v-else-if="(result.profile_path==null && result.poster_path==null)" src="../assets/placeholder_movie.jpg" class="result-poster filter-invert">
                <img v-else :src="'http://image.tmdb.org/t/p/w342'+result.poster_path" alt="" class="result-poster">
             </div>
             <div class="result-info">
                <span class="name">{{result.name}}{{result.title}}</span>
-               <span class="result-type">{{result.media_type}}</span>
+               <span class="rating">{{result.vote_average}}</span>
+               <div class="meta-info">
+                  <span class="result-type">{{result.media_type}}</span>
+                  <span class="result-year" v-if="result.media_type=='movie'">{{result.release_date.slice(0,4)}}</span>
+                  <span class="result-year" v-else-if="result.media_type=='tv'">{{result.first_air_date.slice(0,4)}}</span>
+                  <span class="result-year" v-else> </span>
+               </div>
             </div>
           </router-link>
         </div>
@@ -42,10 +49,11 @@ export default {
       async search(){
          var searchString = document.getElementById("searchbar-input").value
          var search = await axios.get('https://api.themoviedb.org/3/search/multi?api_key='+this.api_key+'&language=en-US&query='+searchString+'&page=1&include_adult=false')
-         // search.data.results = search.data.results.filter(function(obj) {
-         //    return obj.media_type !== 'person';
-         // })
+         search.data.results = search.data.results.filter(function(obj) {
+            return obj.media_type !== 'person';
+         })
          this.searchResults = search.data.results
+         console.log(this.searchResults)
       }
    }
 }

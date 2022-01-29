@@ -9,7 +9,8 @@
 
       <!-- Image -->
       <div class="image-wrapper">
-        <img :src="'https://image.tmdb.org/t/p/w780'+entry.poster_path" class="poster-large">
+        <img v-if="entry.poster_path!=null" :src="'https://image.tmdb.org/t/p/w780'+entry.poster_path" class="poster-large">
+        <img v-else src="../assets/placeholder_movie.jpg" class="poster-large filter-invert">
         <p v-if="entry.tagline!=''" class="tagline">{{entry.tagline}}</p>
         <p v-else class="tagline">&nbsp;</p>
       </div>

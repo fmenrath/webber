@@ -1074,8 +1074,19 @@ body{
 }
 
 //SEARCH PAGE
+@keyframes slideFromTop{
+   0%{
+      transform: translateY(-20px);
+   }
+   100%{
+      transform: translateY(0%);
+   }
+}
+
 .search-action{
    background: var(--background_lighter);
+   transform: translateY(0%);
+   animation: slideFromTop 0.2s ease-in-out, fadeCastSection 0.2s ease-in-out;
 
    .search-wrapper{
       max-width: var(--width);
@@ -1185,8 +1196,16 @@ body{
                   position: absolute;
                   right: 0;
                   font-size: 0.9em;
-                  top: 10px;
+                  top: 27px;
                   font-weight: 600;
+               }
+
+               .heart-full, .heart{
+                  filter: var(--filter_black_to_accent);
+                  height: 22px;
+                  position: absolute;
+                  right: 13px;
+                  top: 34px;
                }
 
                .meta-info{

@@ -8,12 +8,13 @@
       <nav>
         <ul class="nav-links">
           <button class="dark-mode-toggle" @click="toggleDarkMode()"></button>
-          <li class="nav-link"><router-link to="/search/"><img src="../assets/search-solid.svg" alt="search" id="search-icon"></router-link></li>
-          <li class="nav-link"><router-link to="/">Home</router-link></li>
-          <li class="nav-link"><router-link to="/favourites/">Favourites</router-link></li>
-          <li class="nav-link"><router-link to="/about/">About</router-link></li>
+          <li class="nav-link"><router-link to="/search/" @click="toggleBurgerMenu()"><img src="../assets/search-solid.svg" alt="search" id="search-icon"></router-link></li>
+          <li class="nav-link"><router-link to="/" @click="toggleBurgerMenu()">Home</router-link></li>
+          <li class="nav-link"><router-link to="/favourites/" @click="toggleBurgerMenu()">Favourites</router-link></li>
+          <li class="nav-link"><router-link to="/about/" @click="toggleBurgerMenu()">About</router-link></li>
         </ul>
       </nav>
+      <span id="nav-link-mobile"><img src="../assets/menu.svg" alt="" id="menu-icon"  @click="toggleBurgerMenu()"></span>
     </div>
   </header>
 </template>
@@ -21,6 +22,16 @@
 <script>
 export default {
   name: 'Header',
+  computed: {
+    currentTheme(){
+      if(document.body.getAttribute("data-theme")=='light'){
+        return "light"
+      }
+      else{
+        return "dark"
+      }
+    }
+  },
   methods: {
     toggleDarkMode() {
       var theme = document.body.getAttribute("data-theme")
@@ -30,8 +41,18 @@ export default {
       else{
         document.body.setAttribute("data-theme", "dark")
       }
-      // body.classList.toggle("dark");
+    },
+    toggleBurgerMenu(){
+      var nav_links = document.querySelector(".nav-links")
+      if(nav_links.classList.contains("open")){
+        nav_links.classList.remove("open")
+      }
+      else{
+        nav_links.classList.add("open")
+      }
+
     }
+
   }
 }
 </script>

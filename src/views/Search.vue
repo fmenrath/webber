@@ -53,6 +53,9 @@ export default {
             return obj.media_type !== 'person';
          })
          this.searchResults = search.data.results
+         this.searchResultsrray.forEach(result => {
+            result.genreI
+         });
          console.log(this.searchResults)
       }
    }

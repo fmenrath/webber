@@ -5,7 +5,7 @@
         <span class="splash-text">webber</span>
       </div>
       <div class="splash-subheader">
-         Your database for movies and TV shows.
+          Database for movies and TV shows
       </div>
    </div>
 </template>

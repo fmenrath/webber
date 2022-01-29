@@ -88,9 +88,9 @@
   </section>
 
   <!-- List of cast members -->
-  <section class="cast-list">
-    <div class="cast-wrapper">
-      <p class="cast-header">Main Cast</p>
+  <section class="list-block" id="cast-list">
+    <div class="list-block-wrapper">
+      <p class="list-block-header">Main Cast</p>
       <ul>
         <li v-for="actor in entry_cast" :key="actor.id">
           <div class="cast-member">
@@ -99,6 +99,24 @@
             <span class="real-name">{{actor.name}}</span>
             <span class="role-name">{{actor.character}}</span>
           </div>
+        </li>
+      </ul> 
+    </div>
+  </section>
+
+  <section class="list-block" id="similar-movies-list">
+    <div class="list-block-wrapper">
+      <p class="list-block-header">Similar movies</p>
+      <ul>
+        <li v-for="movie in similarMovies" :key="movie.id">
+          <router-link :to="'/movie/'+ movie.id">
+            <div class="similar-movie">
+              <img v-if="(movie.poster_path!=null)" :src="'https://image.tmdb.org/t/p/w300'+movie.poster_path" alt="movie cover">
+              <img v-else src="../assets/placeholder_movie.jpg" class="filter-invert" alt="movie without cover picture" >
+              <span class="movie-title">{{movie.title}}</span>
+              <span class="release-date">{{movie.release_date.slice(0,4)}}</span>
+            </div>
+          </router-link>
         </li>
       </ul> 
     </div>
@@ -121,6 +139,7 @@ export default {
       writers: [],
       socials: [],
       entry_id: this.$route.params.id,
+      similarMovies: [],
       api_key: "13b853544d79c335a990b1e0c5825913"
     }
   },
@@ -152,6 +171,11 @@ export default {
     //Get socials
     const socials = await axios.get('https://api.themoviedb.org/3/movie/'+this.entry_id+'/external_ids?api_key='+this.api_key)
     this.socials = socials.data
+
+    //Get similar movies
+    const similar = await axios.get('https://api.themoviedb.org/3/movie/'+this.entry_id+'/similar?api_key='+this.api_key+'&language=en-US&page=1')
+    this.similarMovies = similar.data.results
+    console.log(this.similarMovies)
   },
   mounted(){
     window.scrollTo(0, 0)

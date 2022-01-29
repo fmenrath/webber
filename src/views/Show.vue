@@ -74,9 +74,9 @@
   </section>
 
   <!-- List of cast members -->
-  <section class="cast-list">
-    <div class="cast-wrapper">
-      <p class="cast-header">Main Cast</p>
+  <section class="list-block" id="cast-list">
+    <div class="list-block-wrapper">
+      <p class="list-block-header">Main Cast</p>
       <ul>
         <li v-for="actor in entry_cast" :key="actor.id">
           <div class="cast-member">

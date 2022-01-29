@@ -6,5 +6,4 @@
          The data used for the app is being retrieved with AJAX calls from "The Movie Database API v3".</p>
       <img src="../assets/movieDBlogo.png" alt="" id="movie-db-logo">
    </div>
-
 </template>

@@ -96,12 +96,12 @@
       <p class="list-block-header">Similar TV shows</p>
       <ul>
         <li v-for="show in similarShows" :key="show.id">
-          <router-link :to="'/movie/'+ show.id">
+          <router-link :to="'/tv/'+ show.id">
             <div class="similar-movie">
               <img v-if="(show.poster_path!=null)" :src="'https://image.tmdb.org/t/p/w300'+show.poster_path" alt="movie cover">
               <img v-else src="../assets/placeholder_movie.jpg" class="filter-invert" alt="movie without cover picture" >
-              <span class="movie-title">{{show.title}}</span>
-              <span class="release-date">{{show.release_date.slice(0,4)}}</span>
+              <span class="movie-title">{{show.name}}</span>
+              <span class="release-date">{{show.first_air_date.slice(0,4)}}</span>
             </div>
           </router-link>
         </li>
@@ -164,6 +164,7 @@ export default {
     //Get similar shows
     const similar = await axios.get('https://api.themoviedb.org/3/tv/'+this.entry_id+'/similar?api_key='+this.api_key+'&language=en-US&page=1')
     this.similarShows = similar.data.results
+    console.log(this.similarShows)
   },
   mounted(){
     window.scrollTo(0, 0)

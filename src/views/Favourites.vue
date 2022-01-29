@@ -17,10 +17,11 @@
                            </div>
                         </div>
                      </div>
-                  </router-link>
-                  <div class="remove-favourite" @click="removeFromFavouriteMovies(movie.id)">
+                     <div class="remove-favourite" @click="removeFromFavouriteMovies(movie.id)">
                      <img src="../assets/minus.svg" class="remove-favourite" alt="remove favourite">
                   </div>
+                  </router-link>
+                  
                </li>
             </ul>
             <div v-else class="no-favourites">You do not have any favourite movies.</div>

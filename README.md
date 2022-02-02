@@ -1,24 +1,3 @@
-# portfolio
+Webber is website that lets the user browse for movies and tv shows.
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+![Screenshot 2022-02-02 160838](https://user-images.githubusercontent.com/72218348/152180701-9ee02b4f-3995-4150-8191-935501188d64.png)

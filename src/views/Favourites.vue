@@ -6,7 +6,7 @@
             <ul v-if="favouriteMovies.length>0">
                <li v-for="movie in favouriteMovies" :key="movie.id">
                   <router-link :to="{ path: '/movie/' + movie.id}">
-                     <div class="favourite-entry" :style="{background: 'linear-gradient(270deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), url(https://image.tmdb.org/t/p/original'+movie.backdrop_path+')'}">
+                     <div class="favourite-entry" :style="{background: 'linear-gradient(270deg, rgb(255 255 255 / 0%) 0%, black 100%), url(https://image.tmdb.org/t/p/original'+movie.backdrop_path+')'}">
                         <div class="favourite-content">
                            <div class="favourite-info">
                               <h2 class="favourite-name">{{movie.title}}</h2>
@@ -30,7 +30,7 @@
             <ul v-if="favouriteShows.length>0">
                <li v-for="show in favouriteShows" :key="show.id">
                   <router-link :to="{ path: '/tv/' + show.id}">
-                     <div class="favourite-entry" :style="{backgroundImage:'linear-gradient(270deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.9) 100%), url(https://image.tmdb.org/t/p/original'+show.backdrop_path+')'}">
+                     <div class="favourite-entry" :style="{backgroundImage:'linear-gradient(270deg, rgb(255 255 255 / 0%) 0%, black 100%), url(https://image.tmdb.org/t/p/original'+show.backdrop_path+')'}">
                         <div class="favourite-content">
                            <div class="favourite-info">
                               <h2 class="favourite-name">{{show.name}}</h2>

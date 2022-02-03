@@ -9,8 +9,6 @@
 
       <!-- Image -->
       <div class="image-wrapper">
-        <!-- <img v-if="entry.poster_path!=null" :src="'https://image.tmdb.org/t/p/w780'+entry.poster_path" class="poster-large">
-        <img v-else src="../assets/placeholder_movie.jpg" class="poster-large filter-invert"> -->
         <img :src="'https://image.tmdb.org/t/p/w780'+entry.poster_path" class="poster-large">
         <p v-if="entry.tagline!=''" class="tagline">{{entry.tagline}}</p>
         <p v-else class="tagline">&nbsp;</p>
@@ -93,12 +91,14 @@
       <p class="list-block-header">Main Cast</p>
       <ul>
         <li v-for="actor in entry_cast" :key="actor.id">
-          <div class="cast-member">
-            <img v-if="(actor.profile_path!=null)" :src="'https://image.tmdb.org/t/p/w300'+actor.profile_path" alt="cast_member">
-            <img v-else src="../assets/placeholder_portrait.png" class="filter-invert" alt="cast_member_no_picture" >
-            <span class="real-name">{{actor.name}}</span>
-            <span class="role-name">{{actor.character}}</span>
-          </div>
+          <router-link :to="'/person/'+ actor.id">
+            <div class="cast-member">
+              <img v-if="(actor.profile_path!=null)" :src="'https://image.tmdb.org/t/p/w300'+actor.profile_path" alt="cast_member">
+              <img v-else src="../assets/placeholder_portrait.png" class="filter-invert" alt="cast_member_no_picture" >
+              <span class="real-name">{{actor.name}}</span>
+              <span class="role-name">{{actor.character}}</span>
+            </div>
+          </router-link>
         </li>
       </ul> 
     </div>

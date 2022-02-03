@@ -3,7 +3,7 @@
 
 // GENERAL SETTINGS
 :root{
-   --width: 1600px;
+   --width: 1500px;
    --text_strong: rgb(44, 44, 44);
    --text_light: rgb(78, 78, 78);
    --accent: #11a252;
@@ -312,10 +312,9 @@ header{
       .movies-filter{
          height: 110px;
          width: 100%;
-         padding: 60px 0 25px;           
          display: flex;
          justify-content: space-between;
-         align-items: flex-end;
+         align-items: center;
          position: relative;
 
          .selection-title{
@@ -955,20 +954,24 @@ footer{
                a{
 
                   .favourite-entry{
-                     height: 100px;
+                     height: 110px;
                      background-color: gray;
                      margin-bottom: 10px;
                      transition: none;
                      border-radius: 3px;
                      background-size: 101% !important;
-                     // background-position: center !important;
-                     box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px, rgb(0 0 0 / 8%) 0px 0px 0px 1px;
+                     background-position-x: center !important;
                      position: relative;
                      transform: scale(1.00);
                      transition: background-size 0.1s linear;
+                     box-shadow: rgb(0 0 0 / 20%) 0px 2px 8px 0px;
 
                      &:hover{
-                        background-size: 102% !important;
+                        background-size: 103% !important;
+
+                        .favourite-name{
+                           // color: var(--accent) !important;
+                        }
                      }
 
                      .favourite-content{
@@ -981,7 +984,7 @@ footer{
                            flex-direction: column;
                            justify-content: center;
                            text-align: left;
-                           padding-left: 25px;
+                           padding-left: 20px;
                            height: 100%;
                            left: 0;
                            width: 100%;
@@ -989,19 +992,18 @@ footer{
                            bottom: 5px;
 
                            .favourite-name{
-                              color: var(--white);
+                              color: var(--text_strong);
                               font-size: 1.3em;
                               font-weight: 600;
                               margin-bottom: 5px;
                               position: relative;;
-                              text-shadow: 0 0 10px #00000085;
                               transition: left 0.1s ease-in-out;
                               left: 0px;
                            }
 
                            span{
                               font-weight: 500;
-                              color: #a6a6a6;
+                              color: var(--text_light);
                               font-size: .95em;
                            }
                            .favourite-genre-list{
@@ -1015,9 +1017,9 @@ footer{
 
                               span{
                                  margin-right: 8px;
-                                 padding: 2px 5px;
-                                 background: rgba(5, 5, 5, 0.199);
-                                 color: rgb(185, 185, 185);
+                                 padding: 1px 4px;
+                                 background: rgba(5, 5, 5, 0.1);
+                                 color: var(--text_light);
                                  border-radius: 4px;
                               }
                            }
@@ -1036,7 +1038,6 @@ footer{
                   cursor: pointer;
 
                   span{
-                     background: #00000066;
                      padding: 3px;
                      color: white;
                      font-size: 0.9em;
@@ -1245,6 +1246,151 @@ footer{
    }
 }
 
+//PERSON PAGE
+.person-wrapper{
+   max-width: var(--width);
+   margin: 0 auto;
+   padding: var(--side_padding);
+   
+   .person-info{
+      display: flex;
+      flex-direction: row;
+
+      .left-container{
+         margin-right: 50px;
+
+         .poster-large{
+            height: 400px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px, rgb(0 0 0 / 8%) 0px 0px 0px 1px;
+         }
+
+         .personal-info-box{
+            background: var(--background_bitlighter);
+            border-radius: 4px;
+            padding: 20px 25px 15px 25px;
+            border: 1px solid var(--background_lighter);
+
+            .personal-info-header{
+               color: var(--text_strong);
+               margin-bottom: 20px;
+               font-size: 1.3em;
+               font-weight: 600;
+            }
+
+            .personal-info{
+               margin: 16px 0;
+
+               .personal-info-type{
+                  color: var(--text_strong);
+                  font-weight: 500;
+                  margin-bottom: 3px;
+                  font-size: 0.95em;
+               }
+
+               span{
+                  color: var(--text_light);
+                  font-weight: 400;
+                  font-size: 0.95em;
+               }
+            }
+         }
+      }
+
+      .right-container{
+         display: flex;
+         flex-direction: column;
+
+         .name{
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 2em;
+            margin-bottom: 20px;
+         }
+         
+         #biography{
+            color: var(--text_light);
+            line-height: 1.5;
+            font-size: 1em;
+            margin-bottom: 60px;
+            text-align: justify;
+         }
+
+         #show-more{
+            position: relative;
+            bottom: 50px;
+            z-index: 20;
+            color: var(--accent);
+            font-size: 0.9em;
+            cursor: pointer;
+         }
+
+         .credits{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 50px;
+
+            .movie-credits, .tv-credits{
+               border: 2px solid var(--background_lighter);
+               border-radius: 4px;
+               height: 500px;
+               width: 100%;
+               position: relative;
+               padding: 20px 25px;
+
+               .credit-header{
+                  text-align: center;
+                  color: var(--text_light);
+                  position: absolute;
+                  background: var(--background);
+                  top: -15px;
+                  left: 4px;
+                  width: min-content;
+                  white-space: pre;
+                  padding: 0 20px;
+                  font-weight: 600;
+                  font-size: 1.25em;
+               }
+               .credit-block{
+                  overflow-y: scroll;
+                  height: 100%;
+                  width: 100%;
+
+                  .credit{
+                     display: flex;
+                     flex-direction: row;
+                     margin: 12px 0;
+                     
+                     .credit-year{
+                        width: 60px;
+                        color: var(--text_light);
+                        align-items: center;
+                        display: flex;
+                     }
+                     
+                     .credit-info{
+                        display: flex;
+                        flex-direction: column;
+               
+                        .credit-title{
+                           font-weight: 500;
+                           color: var(--text_strong);
+                           margin-bottom: 3px;
+                        }
+
+                        .credit-role{
+                           color: var(--text_light);
+                           font-weight: 400;
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}
 
 
 //VIEWPORTS -- needs refactoring

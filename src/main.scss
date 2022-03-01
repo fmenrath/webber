@@ -586,15 +586,28 @@ footer{
    0% {
       transform: translateX(-4%);
    }
+   25% {
+      transform: translateX(-4%);
+   }
    100% {
       transform: translateX(0%);
+   }
+}
+@keyframes fadeDetailPage {
+   0% {
+      opacity: 0;
+   }
+   35% {
+      opacity: 0;
+   }
+   100% {
+      opacity: 1;
    }
 }
 
 .entry-details{
    transform: scale(1);
-   animation-name: moveDetailPage;
-   animation-duration: 0.3s;
+   animation: moveDetailPage .7s, fadeDetailPage .7s;
    transform: translateX(0%);
 
    @keyframes fadeBackdrop{

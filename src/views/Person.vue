@@ -29,7 +29,7 @@
          </div>
         <div class="right-container">
             <h1 class="name">{{actor.name}}</h1>
-            <span id="biography" v-if="actor.biography.length>500" style="max-height: 12ch">{{actor.biography}}</span>
+            <span id="biography" v-if="actor.biography.length>500" style="max-height: 12ch; -webkit-mask-image: linear-gradient(to bottom, var(--background) 60%, transparent 100%)">{{actor.biography}}</span>
             <span id="biography" v-else style="max-height: fit-content">{{actor.biography}}</span>
             <div class="bio-toggle"  v-if="actor.biography.length>500">
                <span id="show-more" v-if="extendedBiography" @click="toggleBiography()">Show less</span>

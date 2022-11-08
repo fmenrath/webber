@@ -3421,11 +3421,6 @@
   "resolved" "https://registry.npmmirror.com/dotenv-expand/download/dotenv-expand-5.1.0.tgz"
   "version" "5.1.0"
 
-"dotenv@^14.2.0":
-  "integrity" "sha512-05POuPJyPpO6jqzTNweQFfAyMSD4qa4lvsMOWyTRTdpHKy6nnnN+IYWaXF+lHivhBH/ufDKlR4IWCAN3oPnHuw=="
-  "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-14.2.0.tgz"
-  "version" "14.2.0"
-
 "dotenv@^8.2.0":
   "integrity" "sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g=="
   "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-8.6.0.tgz"
@@ -3846,7 +3841,7 @@
     "snapdragon" "^0.8.1"
     "to-regex" "^3.0.1"
 
-"express@^4.16.3", "express@^4.17.1", "express@^4.17.2":
+"express@^4.16.3", "express@^4.17.1":
   "integrity" "sha512-oxlxJxcQlYwqPWKVJJtvQiwHgosH/LrLSPA+H4UxpyvSS6jC5aH+5MoHFM+KABgTOt0APue4w66Ha8jCUo9QGg=="
   "resolved" "https://registry.npmjs.org/express/-/express-4.17.2.tgz"
   "version" "4.17.2"
@@ -6829,13 +6824,6 @@
   "resolved" "https://registry.npmmirror.com/progress/download/progress-2.0.3.tgz"
   "version" "2.0.3"
 
-"progressbar.js@^1.1.0":
-  "integrity" "sha512-K68/xcyXKo2I6T3PfIkXrRaycxROmWeU4bugb49iulWR25cU94PM0cfZ47S0jDhG5K3vPhZwCOy1fgb5Pgh6UQ=="
-  "resolved" "https://registry.npmjs.org/progressbar.js/-/progressbar.js-1.1.0.tgz"
-  "version" "1.1.0"
-  dependencies:
-    "shifty" "^2.1.2"
-
 "promise-inflight@^1.0.1":
   "integrity" "sha1-mEcocL8igTL8vdhoEputEsPAKeM="
   "resolved" "https://registry.nlark.com/promise-inflight/download/promise-inflight-1.0.1.tgz"
@@ -7555,13 +7543,6 @@
   "integrity" "sha1-qkDtrBcERbmkMeF7tiwLiBucQSM="
   "resolved" "https://registry.npmmirror.com/shell-quote/download/shell-quote-1.7.3.tgz?cache=0&sync_timestamp=1634798303662&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fshell-quote%2Fdownload%2Fshell-quote-1.7.3.tgz"
   "version" "1.7.3"
-
-"shifty@^2.1.2":
-  "integrity" "sha512-ime0aar6UX4OHG8WjC84ThqLU6PWf/6UdSLCMJFvWmeYx1PmuxvRNwiJom4py7GVLv10xRfDKt0MssotIxkYhQ=="
-  "resolved" "https://registry.npmjs.org/shifty/-/shifty-2.17.1.tgz"
-  "version" "2.17.1"
-  optionalDependencies:
-    "fsevents" "^2.3.2"
 
 "side-channel@^1.0.4":
   "integrity" "sha1-785cj9wQTudRslxY1CkAEfpeos8="

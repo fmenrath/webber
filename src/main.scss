@@ -19,7 +19,8 @@
    --filter_studio_invert: grayscale(1) invert(0);
    --filter_black_to_accent_logo: invert(67%) sepia(53%) saturate(639%) hue-rotate(92deg) brightness(94%) contrast(82%);
    --filter_black_to_accent: invert(35%) sepia(72%) saturate(5114%) hue-rotate(139deg) brightness(107%) contrast(87%);
-   --dark_mode_toggle_pos: 4px;
+   --dark_mode_toggle_pos: 2px;
+   --dark_mode_toggle_color:rgb(230 230 230);
    --side_padding: 30px;
 }
 
@@ -34,7 +35,8 @@
    --filter_invert: invert(1);
    --filter_studio_invert: grayscale(1) invert(1);
    --filter_black_to_accent: invert(67%) sepia(53%) saturate(639%) hue-rotate(92deg) brightness(94%) contrast(82%);
-   --dark_mode_toggle_pos: 28px;
+   --dark_mode_toggle_pos: 19px;
+   --dark_mode_toggle_color: rgb(97 97 97);
 }
 
 *{
@@ -186,6 +188,7 @@ body{
 header{
    height: 70px;
    background-color: var(--header);
+   background-color: transparent;
    width: 100%;
    position: relative;
    z-index: 100;
@@ -213,7 +216,7 @@ header{
             font-weight: 500;
             font-size: 1.7em;
             margin-left: .3em;
-            color: var(--lightgray);
+            color: var(--accent);
 
             &:hover{
                color: var(--accent);
@@ -232,21 +235,21 @@ header{
             border: 0;
             box-sizing: border-box;
             cursor: pointer;
-            height: 24px;
+            height: 18px;
             border-radius: 30px;
-            width: 50px;
+            width: 36px;
             position: relative;
-            background-color: var(--text_light);
+            background-color: var(--dark_mode_toggle_color);
             box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
             
             &:before{
                content: '';
-               width: 18px;
-               height: 18px;
+               width: 14px;
+               height: 14px;
                background-color: var(--background_lighter);
                position: absolute;
                left: var(--dark_mode_toggle_pos);
-               top: 3px;
+               top: 2px;
                border-radius: 30px;
                box-shadow: rgba(50, 50, 93, 0.15) 0px 2px 5px -1px, rgba(0, 0, 0, 0.1) 0px 1px 3px -1px;
                transition: left 0.15s ease-in-out, background-color 0.15s ease-in-out, 
@@ -254,12 +257,12 @@ header{
          }
 
          .nav-link{
-            margin-left: 40px;
+            margin-left: 45px;
 
             a{
                font-weight: 500;
-               font-size: 1.1em;
-               color: var(--white);
+               font-size: 1em;
+               color: var(--text_strong);
                position: relative;
                top: 1px;
 
@@ -268,10 +271,9 @@ header{
                }
             }
             #search-icon{
-               height: 20px;
+               height: 18px;
                position: relative;
                top: 3px;
-               filter: brightness(2);
                cursor: pointer;
 
                &:hover{

@@ -18,7 +18,7 @@
       <!-- Info (Name, Year, Rating etc.) -->
       <div class="info">
         <div class="main-info">
-          <div class="rating-text">★ <strong>{{entry.vote_average}}</strong> / 10</div>
+          <div class="rating-text">★ <strong>{{entry.vote_average.toFixed(1)}}</strong> / 10</div>
           <h1>{{entry.name}}{{entry.title}}</h1>
           <div class="entry-meta-info">
             <span>{{entry.first_air_date.slice(0,4)}}-{{entry.last_air_date.slice(0,4)}}</span>
@@ -74,17 +74,23 @@
   </section>
 
   <!-- List of cast members -->
-  <section class="list-block" id="cast-list">
+  <section class="list-block">
     <div class="list-block-wrapper">
       <p class="list-block-header">Main Cast</p>
-      <ul>
+      <div class="cast-toggle" v-if="entry_cast.length>12">
+        <span class="cast-show-all" v-if="extendedCastList" @click="toggleCastList()">Show fewer</span>
+        <span class="cast-show-all" v-else @click="toggleCastList()">Show all</span>
+      </div> 
+      <ul id="cast-list" style="max-height: 250px; -webkit-mask-image: linear-gradient(to bottom, var(--background) 80%, transparent 100%)">
         <li v-for="actor in entry_cast" :key="actor.id">
           <router-link :to="'/person/'+ actor.id">
             <div class="cast-member">
               <img v-if="(actor.profile_path!=null)" :src="'https://image.tmdb.org/t/p/w300'+actor.profile_path" alt="cast_member">
               <img v-else src="../assets/placeholder_portrait.png" class="filter-invert" alt="cast_member_no_picture" >
-              <span class="real-name">{{actor.name}}</span>
-              <span class="role-name">{{actor.character}}</span>
+              <div class="cast-member-info">
+                <span class="real-name">{{actor.name}}</span>
+                <span class="role-name">{{actor.character}}</span>
+              </div>
             </div>
           </router-link>
         </li>
@@ -93,21 +99,18 @@
   </section>
 
   <!-- List of similar shows-->
-  <section class="list-block" id="similar-shows-list">
+  <section class="list-block">
     <div class="list-block-wrapper">
       <p class="list-block-header">Similar TV shows</p>
-      <ul>
-        <li v-for="show in similarShows" :key="show.id">
-          <router-link :to="'/tv/'+ show.id">
+      <ul id="similar-shows-list">
+        <li v-for="movie in similarShows" :key="movie.id">
+          <router-link :to="'/movie/'+ movie.id">
             <div class="similar-movie">
-              <img v-if="(show.poster_path!=null)" :src="'https://image.tmdb.org/t/p/w300'+show.poster_path" alt="movie cover">
-              <img v-else src="../assets/placeholder_movie.jpg" class="filter-invert" alt="movie without cover picture" >
-              <span class="movie-title">{{show.name}}</span>
-              <span class="release-date">{{show.first_air_date.slice(0,4)}}</span>
+              <img v-if="(movie.poster_path!=null)" :src="'https://image.tmdb.org/t/p/w300'+movie.poster_path" alt="movie cover">
             </div>
           </router-link>
         </li>
-      </ul> 
+      </ul>
     </div>
   </section>
 </template>

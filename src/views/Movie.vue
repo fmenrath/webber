@@ -17,7 +17,7 @@
       <!-- Info (Name, Year, Rating etc.) -->
       <div class="info">
         <div class="main-info">
-          <div class="rating-text">★ <strong>{{entry.vote_average}}</strong> / 10</div>
+          <div class="rating-text">★ <strong>{{entry.vote_average.toFixed(1)}}</strong> / 10</div>
           <h1>{{entry.name}}{{entry.title}}</h1>
           <div class="entry-meta-info">
             <span>{{entry.release_date}}</span>
@@ -86,17 +86,23 @@
   </section>
 
   <!-- List of cast members -->
-  <section class="list-block" id="cast-list">
+  <section class="list-block">
     <div class="list-block-wrapper">
       <p class="list-block-header">Main Cast</p>
-      <ul>
+      <div class="cast-toggle" v-if="entry_cast.length>12">
+        <span class="cast-show-all" v-if="extendedCastList" @click="toggleCastList()">Show fewer</span>
+        <span class="cast-show-all" v-else @click="toggleCastList()">Show all</span>
+      </div> 
+      <ul id="cast-list" style="max-height: 250px; -webkit-mask-image: linear-gradient(to bottom, var(--background) 80%, transparent 100%)">
         <li v-for="actor in entry_cast" :key="actor.id">
           <router-link :to="'/person/'+ actor.id">
             <div class="cast-member">
               <img v-if="(actor.profile_path!=null)" :src="'https://image.tmdb.org/t/p/w300'+actor.profile_path" alt="cast_member">
               <img v-else src="../assets/placeholder_portrait.png" class="filter-invert" alt="cast_member_no_picture" >
-              <span class="real-name">{{actor.name}}</span>
-              <span class="role-name">{{actor.character}}</span>
+              <div class="cast-member-info">
+                <span class="real-name">{{actor.name}}</span>
+                <span class="role-name">{{actor.character}}</span>
+              </div>
             </div>
           </router-link>
         </li>
@@ -108,18 +114,15 @@
   <section class="list-block" id="similar-movies-list">
     <div class="list-block-wrapper">
       <p class="list-block-header">Similar movies</p>
-      <ul>
+      <ul id="similar-movies-list">
         <li v-for="movie in similarMovies" :key="movie.id">
           <router-link :to="'/movie/'+ movie.id">
             <div class="similar-movie">
               <img v-if="(movie.poster_path!=null)" :src="'https://image.tmdb.org/t/p/w300'+movie.poster_path" alt="movie cover">
-              <img v-else src="../assets/placeholder_movie.jpg" class="filter-invert" alt="movie without cover picture" >
-              <span class="movie-title">{{movie.title}}</span>
-              <span class="release-date">{{movie.release_date.slice(0,4)}}</span>
             </div>
           </router-link>
         </li>
-      </ul> 
+      </ul>
     </div>
   </section>
 </template>
@@ -141,7 +144,8 @@ export default {
       socials: [],
       entry_id: this.$route.params.id,
       similarMovies: [],
-      api_key: "13b853544d79c335a990b1e0c5825913"
+      api_key: "13b853544d79c335a990b1e0c5825913",
+      extendedCastList: false
     }
   },
   props: ['favouriteShows', 'favouriteMovies'],
@@ -150,11 +154,13 @@ export default {
     //Get Movie Details from API
     const res = await axios.get('https://api.themoviedb.org/3/movie/'+this.entry_id+'?api_key='+this.api_key+'&language=en-US')
     this.entry = res.data
+    console.log(this.entry)
 
     //Get Movie Crew and Cast from API
     const cast = await axios.get('https://api.themoviedb.org/3/movie/'+this.entry_id+'/credits?api_key='+this.api_key+'&language=en-US')
     this.entry_crew = cast.data.crew
     this.entry_cast = cast.data.cast
+    console.log(this.entry_cast.length)
 
     //Add data to crew lists
     this.entry_crew.forEach(crewmember => {
@@ -195,6 +201,19 @@ export default {
     },
     removeFromFavouriteMovies(number){
       this.$emit('removeFromFavouriteMovies', number)
+    },
+    toggleCastList(){
+      var castList = document.getElementById("cast-list")
+      if (this.extendedCastList==false){
+        castList.style.setProperty("max-height","fit-content")
+        castList.style.setProperty("-webkit-mask-image","none")
+        this.extendedCastList = true
+      }
+      else{
+        castList.style.setProperty("max-height","250px")
+        castList.style.setProperty("-webkit-mask-image","linear-gradient(to bottom, var(--background) 90%, transparent 100%)")
+        this.extendedCastList = false
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <SplashScreen />
-  <Header/>
+  <Header @typeswitch="typeswitch"/>
   <main>
     <router-view 
       @addToFavouriteMovies="addToFavouriteMovies"
@@ -9,9 +9,8 @@
       @removeFromFavouriteShows="removeFromFavouriteShows"
       :favouriteMovies="favouriteMovies"
       :favouriteShows="favouriteShows"
-      @changeGridSize="changeGridSize"
-      :gridSizePreference="gridSizePreference"
       :key="$route.fullPath"
+      :type="type"
       ></router-view>
   </main>
   <Footer/>
@@ -19,7 +18,7 @@
 
 
 <script>
-import './main.scss'
+import './style/main.scss'
 import SplashScreen from './components/SplashScreen.vue'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
@@ -35,7 +34,7 @@ export default{
     return{
       favouriteMovies: [],
       favouriteShows: [],
-      gridSizePreference: 7
+      type: "movie"
     }
   },
   mounted(){
@@ -62,11 +61,6 @@ export default{
         localStorage.favouriteShows = JSON.stringify(updatedShows)
       },
       deep: true
-    },
-    gridSizePreference: {
-      handler(newGridSize){
-        localStorage.gridSizePreference = JSON.stringify(newGridSize)
-      }
     }
   },
   methods: {
@@ -89,13 +83,23 @@ export default{
         return obj.id !== show_id;
       })
     },
-
-    //Change movie grid size
-    changeGridSize(value){
-      this.gridSizePreference = value
-      //Get grid and change column count
-      var grid = document.querySelector(".movies-grid")
-      grid.style.gridTemplateColumns = 'repeat('+this.gridSizePreference+', 1fr)'
+    //Switch from Movies to Shows and vice versa
+    typeswitch(mediaType){
+      this.type=mediaType
+      let mediaSwitch = document.getElementById('media-switch')
+      let mediaSwitchMovie = document.getElementById('movie')
+      let mediaSwitchTV = document.getElementById('tv')
+    
+      if(mediaType=="tv"){
+        mediaSwitchMovie.classList.remove("active")
+        mediaSwitchTV.classList.add("active")
+        mediaSwitch.classList.add("right")
+      }
+      else if(mediaType=="movie"){
+        mediaSwitchTV.classList.remove("active")
+        mediaSwitchMovie.classList.add("active")
+        mediaSwitch.classList.remove("right")
+      }
     }
   }
 }
